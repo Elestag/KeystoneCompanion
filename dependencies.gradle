@@ -1,0 +1,43 @@
+ext.versions = [
+        lifecycle       : '2.5.0',
+        adapterDelegates: '4.3.2',
+        retrofit        : '2.9.0',
+        coroutines      : '1.6.4',
+        glide           : '4.14.2',
+        dagger          : '2.44.2'
+]
+
+
+ext.libs = [
+        coroutines                 : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines",
+        coroutinesAndroid          : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
+
+        appcompat                  : "androidx.appcompat:appcompat:1.5.1",
+        coreKtx                    : "androidx.core:core-ktx:1.7.0",
+        constraintLayout           : "androidx.constraintlayout:constraintlayout:2.1.4",
+        material                   : "com.google.android.material:material:1.7.0",
+        fragment                   : "androidx.fragment:fragment-ktx:1.5.4",
+
+        //Lifecycle
+        lifecycleViewModel         : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle",
+        lifecycleLiveData          : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle",
+        lifecycleCompiler          : "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle",
+
+        //Adapter
+        adapterDelegates           : "com.hannesdorfmann:adapterdelegates4-kotlin-dsl:$versions.adapterDelegates",
+        adapterDelegatesViewBinding: "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:$versions.adapterDelegates",
+
+        //Network
+        retrofit                   : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+        retrofitGsonConverter      : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+        okHttpLoggingInterceptor   : "com.squareup.okhttp3:logging-interceptor:4.10.0",
+
+        //Glide
+        glide                      : "com.github.bumptech.glide:glide:$versions.glide",
+        glideCompiler              : "com.github.bumptech.glide:compiler:$versions.glide",
+
+        //Dagger
+        dagger                     : "com.google.dagger:dagger:$versions.dagger",
+        daggerCompiler             : "com.google.dagger:dagger-compiler:$versions.dagger",
+
+]
