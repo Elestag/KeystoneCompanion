@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Keystone Companion</string>
+    <string name="dungeons_button_label">Dungeons</string>
+    <string name="mythic_button_label">Mythic+</string>
+    <string name="weekly_modifiers_label">Weekly M+ modifiers</string>
+    <string name="token_price">Token price</string>
 </resources>

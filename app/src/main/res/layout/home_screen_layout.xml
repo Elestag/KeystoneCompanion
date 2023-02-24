@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Add a toolbar for the app name and logo -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        app:logo="@drawable/ic_launcher_foreground"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/baseWhite" />
+
+    <!-- Add a horizontal layout for the buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Add a button for Dungeons -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/dungeons_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorAccent"
+            android:text="@string/dungeons_button_label"
+            android:textColor="@color/baseBlack" />
+
+        <!-- Add a button for Mythic+ -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/mythic_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorAccent"
+            android:text="@string/mythic_button_label"
+            android:textColor="@color/baseBlack" />
+
+
+    </LinearLayout>
+    <!-- Add a view for the weekly modifiers -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/weekly_modifiers_textview"
+        style="@style/TextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="16dp"
+        android:text="@string/weekly_modifiers_label"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/season_affix"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:src="@drawable/ability_toughness" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/tyra_fort_affix"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:src="@drawable/ability_toughness" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/affix_one"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:src="@drawable/ability_toughness" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/affix_two"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:src="@drawable/ability_toughness" />
+
+    </LinearLayout>
+
+
+    <!-- Add a view for the tips on passing -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tips_textview"
+        style="@style/TextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="16dp"
+        android:text="@string/token_price"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="44sp"
+            tools:text="345,954" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:src="@drawable/inv_misc_coin_02" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -40,6 +40,9 @@ android {
 dependencies {
     implementation libs.coroutines
     implementation libs.coroutinesAndroid
+    implementation libs.retrofit
+    implementation libs.retrofitGsonConverter
+    implementation libs.okHttpLoggingInterceptor
 
     implementation libs.appcompat
     implementation libs.coreKtx
