@@ -4,4 +4,6 @@
     <string name="mythic_button_label">Mythic+</string>
     <string name="weekly_modifiers_label">Weekly M+ modifiers</string>
     <string name="token_price">Token price</string>
+    <string name="the_azure_vault">The Azure Vault</string>
+    <string name="description_azure_vault">Long ago, Malygos created the Azure Vault as a place for Sindragosa to catalogue and store any curious magical artifacts he found. Locked away and deserted millennia ago, the Vault has since fallen into disrepair, leaving it vulnerable to attacks from without... and within.</string>
 </resources>

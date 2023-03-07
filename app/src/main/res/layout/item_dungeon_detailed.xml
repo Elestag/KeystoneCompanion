@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/boss_icon_1"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/boss_name_1"
+            app:srcCompat="@drawable/creature_leymor" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/boss_name_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Leymor"
+            android:textColor="@color/baseWhite"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/boss_description_1"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:padding="8dp"
+            android:text="Leymor was born of a humble seedling that Malygos found in a pool of ley energy. Once but a small sprout in Sindragosa's garden, over millenia Leymor has shot up like a weed. Left to its own devices, the looming giant would surely overrun the entirety of the Azure Vault."
+            android:textColor="@color/baseWhite"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/boss_icon_1"
+            app:layout_constraintTop_toBottomOf="@id/boss_name_1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
