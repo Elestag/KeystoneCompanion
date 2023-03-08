@@ -24,10 +24,9 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/dungeon_image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="300dp"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
         android:paddingTop="4dp"
-        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dungeon_text_view_name"
