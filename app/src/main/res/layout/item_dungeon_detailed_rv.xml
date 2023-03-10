@@ -46,6 +46,7 @@
         app:layout_constraintTop_toBottomOf="@id/dungeon_image_view" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/detailed_dungeon_recycler_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clipToPadding="false"

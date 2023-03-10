@@ -9,22 +9,24 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.ostapenko.keystonecompanion.R
-import com.ostapenko.keystonecompanion.model.dungeons.AddonDungeon
+import com.ostapenko.keystonecompanion.model.dungeons.DetailedItemRV
 import com.ostapenko.keystonecompanion.model.dungeons.DungeonsItemRV
+import com.ostapenko.keystonecompanion.model.dungeons.SeasonDungeon
 import com.ostapenko.keystonecompanion.ui.main.DetailedDungeonFragment
+import com.ostapenko.keystonecompanion.ui.main.DetailedMplusFragment
 
-class DungeonsItemAdapter(private val items: List<AddonDungeon>) :
-    RecyclerView.Adapter<DungeonsItemAdapter.ViewHolder>() {
+class MplusItemAdapter(private val items: List<SeasonDungeon>) :
+    RecyclerView.Adapter<MplusItemAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): DungeonsItemAdapter.ViewHolder {
+    ): MplusItemAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_dungeon, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: DungeonsItemAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MplusItemAdapter.ViewHolder, position: Int) {
         val item = items[position]
         holder.name.text = item.name
         holder.image.setImageResource(item.imageResId)
@@ -42,7 +44,7 @@ class DungeonsItemAdapter(private val items: List<AddonDungeon>) :
                 val bundle = Bundle()
                 bundle.putString("name", name.text.toString())
 
-                val fragment = DetailedDungeonFragment()
+                val fragment = DetailedMplusFragment()
                 fragment.arguments = bundle
 
                 val transaction = view.context as AppCompatActivity

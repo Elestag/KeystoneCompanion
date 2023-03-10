@@ -17,7 +17,16 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         binding.dungeonsButton.setOnClickListener {
             val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.container,DungeonsFragment())?.commit()
+            transaction?.replace(R.id.container, DungeonsFragment())
+                ?.addToBackStack("MainFragment")
+                ?.commit()
+        }
+
+        binding.mythicButton.setOnClickListener {
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.container, MplusFragment())
+                ?.addToBackStack("MainFragment")
+                ?.commit()
         }
     }
 }
