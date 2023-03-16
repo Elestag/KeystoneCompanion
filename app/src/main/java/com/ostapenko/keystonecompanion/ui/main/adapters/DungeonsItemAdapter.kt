@@ -26,7 +26,7 @@ class DungeonsItemAdapter(private val items: List<AddonDungeon>) :
 
     override fun onBindViewHolder(holder: DungeonsItemAdapter.ViewHolder, position: Int) {
         val item = items[position]
-        holder.name.text = item.name
+        holder.name.setText(item.nameResId)
         holder.image.setImageResource(item.imageResId)
     }
 

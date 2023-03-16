@@ -7,10 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ostapenko.keystonecompanion.R
-import com.ostapenko.keystonecompanion.model.dungeons.DetailedItemRV
-import com.ostapenko.keystonecompanion.model.dungeons.DungeonsItemRV
+import com.ostapenko.keystonecompanion.model.dungeons.boss.DungeonBossImpl
 
-class DetailedItemAdapter(private val items: List<DetailedItemRV>) :
+class DetailedItemAdapter(private val items: List<DungeonBossImpl>) :
     RecyclerView.Adapter<DetailedItemAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -23,9 +22,9 @@ class DetailedItemAdapter(private val items: List<DetailedItemRV>) :
 
     override fun onBindViewHolder(holder: DetailedItemAdapter.ViewHolder, position: Int) {
         val item = items[position]
-        holder.name.text = item.name
-        holder.image.setImageResource(item.image)
-        holder.description.text = item.description
+        holder.name.setText(item.nameResId)
+        holder.image.setImageResource(item.imageResId)
+        holder.description.setText(item.descriptionResId)
     }
 
     override fun getItemCount(): Int {

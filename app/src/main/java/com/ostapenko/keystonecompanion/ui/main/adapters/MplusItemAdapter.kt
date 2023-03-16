@@ -9,10 +9,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.ostapenko.keystonecompanion.R
-import com.ostapenko.keystonecompanion.model.dungeons.DetailedItemRV
-import com.ostapenko.keystonecompanion.model.dungeons.DungeonsItemRV
+
 import com.ostapenko.keystonecompanion.model.dungeons.SeasonDungeon
-import com.ostapenko.keystonecompanion.ui.main.DetailedDungeonFragment
+
 import com.ostapenko.keystonecompanion.ui.main.DetailedMplusFragment
 
 class MplusItemAdapter(private val items: List<SeasonDungeon>) :
@@ -39,6 +38,7 @@ class MplusItemAdapter(private val items: List<SeasonDungeon>) :
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.dungeon_text_view_name)
         val image: ImageView = view.findViewById(R.id.dungeon_image_view)
+
         init {
             view.setOnClickListener {
                 val bundle = Bundle()
