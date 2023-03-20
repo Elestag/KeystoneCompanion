@@ -114,9 +114,9 @@ sealed class SeasonDungeon(val name: String, val imageResId: Int, val mPlus: Boo
             R.string.description_talixae_flamewreath
         )
         val boss3 = DungeonBossImpl(
-            R.string.kyrakka_and_erkhart_stormvein,
-            R.drawable.creature_erkhart_stormvein,
-            R.string.description_kyrakka_and_erkhart_stormvein
+            R.string.advisor_melandrus,
+            R.drawable.creature_melandrus,
+            R.string.description_advisor_melandrus
         )
     }
 
