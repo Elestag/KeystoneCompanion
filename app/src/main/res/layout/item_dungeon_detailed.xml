@@ -31,35 +31,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/boss_description_1"
+    <com.skydoves.expandablelayout.ExpandableLayout
+        android:id="@+id/expandable_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="marquee"
-        android:fontFamily="sans-serif-light"
-        android:padding="8dp"
-        android:scrollHorizontally="false"
-        android:text="Leymor was born of a humble seedling that Malygos found in a pool of ley energy. Once but a small sprout in Sindragosa's garden, over millenia Leymor has shot up like a weed. Left to its own devices, the looming giant would surely overrun the entirety of the Azure Vault."
-        android:textColor="@color/baseWhite"
-        android:textSize="16sp"
+        android:orientation="vertical"
+        app:expandable_duration="500"
+        app:expandable_isExpanded="false"
+        app:expandable_parentLayout="@layout/boss_description_parent"
+        app:expandable_secondLayout="@layout/boss_description"
+        app:expandable_showSpinner="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/boss_icon_1" />
-
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/boss_description_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
-        android:maxLines="10"
-        android:padding="8dp"
-        android:text="Leymor was born of a humble seedling that Malygos found in a pool of ley energy. Once but a small sprout in Sindragosa's garden, over millenia Leymor has shot up like a weed. Left to its own devices, the looming giant would surely overrun the entirety of the Azure Vault."
-        android:textColor="@color/baseWhite"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/boss_description_1" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

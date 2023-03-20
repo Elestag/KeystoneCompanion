@@ -7,7 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ostapenko.keystonecompanion.R
+import com.ostapenko.keystonecompanion.model.dungeons.boss.DungeonBoss
 import com.ostapenko.keystonecompanion.model.dungeons.boss.DungeonBossImpl
+import com.skydoves.expandablelayout.ExpandableLayout
 
 class DetailedItemAdapter(private val items: List<DungeonBossImpl>) :
     RecyclerView.Adapter<DetailedItemAdapter.ViewHolder>() {
@@ -25,6 +27,21 @@ class DetailedItemAdapter(private val items: List<DungeonBossImpl>) :
         holder.name.setText(item.nameResId)
         holder.image.setImageResource(item.imageResId)
         holder.description.setText(item.descriptionResId)
+
+
+        holder.expandable.setOnExpandListener {
+            holder.description.maxLines = Int.MAX_VALUE
+        }
+
+        holder.expandable.setOnClickListener {
+            if (holder.expandable.isExpanded){
+                holder.expandable.collapse()
+            }else{
+                holder.expandable.expand()
+            }
+
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -35,5 +52,7 @@ class DetailedItemAdapter(private val items: List<DungeonBossImpl>) :
         val name: TextView = view.findViewById(R.id.boss_name_1)
         val image: ImageView = view.findViewById(R.id.boss_icon_1)
         val description: TextView = view.findViewById(R.id.boss_description_1)
+        val expandable: ExpandableLayout = view.findViewById(R.id.expandable_description)
+
     }
 }

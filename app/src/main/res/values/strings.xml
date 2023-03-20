@@ -4,6 +4,8 @@
     <string name="mythic_button_label">Mythic+</string>
     <string name="weekly_modifiers_label">Weekly M+ modifiers</string>
     <string name="token_price">Token price</string>
+    <string name="boss_description">Boss description</string>
+
 
     <!--Dungeons -->
 
@@ -138,7 +140,7 @@
     <string name="description_telash_greywing">Furious at the blue dragonflight, Telash Greywing is determined to find the secrets that Sindragosa has been hiding in the Arcane Vault. Together with the Sundered Flame, he is certain he will discover more about the origins of the dracthyr… and incriminating evidence against the blue dragonflight.</string>
     <string name="description_umbrelskul">Millennia ago, Umbreskul unwittingly meddled with raw arcane power. Riddled with crystalline growths, he was taken to the Azure Vault until a cure could be found. Sadly, the Vault was sealed away before the research was completed, leaving Umbrelskul sleeping in stasis… until now.</string>
     <!--AA -->
-    <string name="description_vexamus">As one of the most tenured professors in the academy, Maxdormu uses his powers as a bronze dragon to help bring his history lessons to life. \r\n\r\nWhile this proves to be quite an educational and fun experience, it can occasionally go awry. Vexamus is one of Professor Maxdormu\'s favorite lessons, but if any historical detail is inaccurate he will be quick to scold any rowdy students.</string>
+    <string name="description_vexamus">As one of the most tenured professors in the academy, Maxdormu uses his powers as a bronze dragon to help bring his history lessons to life. While this proves to be quite an educational and fun experience, it can occasionally go awry. Vexamus is one of Professor Maxdormu\'s favorite lessons, but if any historical detail is inaccurate he will be quick to scold any rowdy students.</string>
     <string name="description_overgrown_ancient">Professors Mystakria and Ichistrasz have used just a touch too much magic in an effort to clear the botany labs. Now they have a big, leafy problem on their hands in the form of an Overgrown Ancient that threatens to undo all their hard work.</string>
     <string name="description_crawth">The Lish Llrath, or Talon Toss, arena is quite literally for the birds these days. Crawth has taken up residence in the center of the arena and has no immediate plans to move out soon. Let\'s see if we can get her to play ball… and leave.</string>
     <string name="description_echo_of_doragosa">Headteacher Doragosa thought of everything when it came to Algeth\'ar Academy. Including a complex simulacrum of herself to take care of any day to day tasks and upkeep while the Isles lay dormant. Now that the Academy is open once again, perhaps she can use it to help keep track of all the new students. It\'s done a fine job in the interim, and is absolutely the one spell that did not degrade after all these years. Perfectly stable and helpful. Right?</string>
@@ -211,4 +213,5 @@
     <string name="description_grand_vizier_ertan">Ertan defends the Vortex Pinnacle under the command of her master, Asaad, against any ground-dwellers who dare intrude on the realm. To fulfill her duties, the elemental noble has been granted mastery over the primal forces of lightning and wind.</string>
     <string name="description_altairus">The immense storm wyrm Altairus maintains an unyielding vigil over the hovering platforms of the Vortex Pinnacle. The very energies of the storms pulse through this being, and he is said to command the wind currents that buffet the elemental fortress.</string>
     <string name="description_asaad_caliph_of_zephyrs">The fearsome elemental Asaad was named guardian of the Vortex Pinnacle by Al\'Akir himself. With Siamat, Lord of the South Wind, imprisoned by the Neferset tol\'vir, Asaad believes he may ascend to the Conclave of Wind if he performs his duties well.</string>
+
 </resources>

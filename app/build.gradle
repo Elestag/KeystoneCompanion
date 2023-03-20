@@ -54,6 +54,8 @@ dependencies {
     implementation libs.lifecycleLiveData
     kapt libs.lifecycleCompiler
 
+    implementation libs.expandableLayout
+
    // implementation libs.adapterDelegates
    // implementation libs.adapterDelegatesViewBinding
 
