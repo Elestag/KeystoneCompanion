@@ -18,7 +18,7 @@ class DetailedMplusFragment : Fragment(R.layout.item_dungeon_detailed_rv) {
     private lateinit var myAdapter: DetailedItemAdapter
 
     //TODO сделать енам для описания данжей с картинками и роутами
-    //TODO сделать возможность сворачивать описание босса и типсов
+    //TODO найти известные типсы по текущим и будущим данжам и решить вводить ли такую категорию
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

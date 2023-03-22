@@ -68,32 +68,33 @@
 
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/season_affix"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_weight="1"
-            android:src="@drawable/ability_toughness" />
-
-        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/tyra_fort_affix"
+
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_weight="1"
-            android:src="@drawable/ability_toughness" />
+             />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/affix_one"
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_weight="1"
-            android:src="@drawable/ability_toughness" />
+             />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/affix_two"
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_weight="1"
-            android:src="@drawable/ability_toughness" />
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/season_affix"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+             />
 
     </LinearLayout>
 

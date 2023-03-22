@@ -45,5 +45,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/boss_icon_1" />
 
+    <com.skydoves.expandablelayout.ExpandableLayout
+        android:id="@+id/expandable_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:expandable_duration="500"
+        app:expandable_isExpanded="false"
+        app:expandable_parentLayout="@layout/boss_tips_parent"
+        app:expandable_secondLayout="@layout/boss_tips"
+        app:expandable_showSpinner="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/expandable_description" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

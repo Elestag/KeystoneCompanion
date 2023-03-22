@@ -5,6 +5,7 @@
     <string name="weekly_modifiers_label">Weekly M+ modifiers</string>
     <string name="token_price">Token price</string>
     <string name="boss_description">Boss description</string>
+    <string name="boss_tips">Boss tips and tricks</string>
 
 
     <!--Dungeons -->
@@ -214,4 +215,19 @@
     <string name="description_altairus">The immense storm wyrm Altairus maintains an unyielding vigil over the hovering platforms of the Vortex Pinnacle. The very energies of the storms pulse through this being, and he is said to command the wind currents that buffet the elemental fortress.</string>
     <string name="description_asaad_caliph_of_zephyrs">The fearsome elemental Asaad was named guardian of the Vortex Pinnacle by Al\'Akir himself. With Siamat, Lord of the South Wind, imprisoned by the Neferset tol\'vir, Asaad believes he may ascend to the Conclave of Wind if he performs his duties well.</string>
 
+
+    <!--Mythic+ affixes -->
+    <string name="affix_tyrannical">Tyrannical</string>
+    <string name="affix_fortified">Fortified</string>
+    <string name="affix_volcanic">Volcanic</string>
+    <string name="affix_raging">Raging</string>
+    <string name="affix_bolstering">Bolstering</string>
+    <string name="affix_sanguine">Sanguine</string>
+    <string name="affix_bursting">Bursting</string>
+    <string name="affix_grievous">Grievous</string>
+    <string name="affix_explosive">Explosive</string>
+    <string name="affix_quaking">Quaking</string>
+    <string name="affix_spiteful">Spiteful</string>
+    <string name="affix_storming">Storming</string>
+    <string name="affix_thundering">Thundering</string>
 </resources>

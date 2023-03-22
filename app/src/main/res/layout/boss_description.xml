@@ -1,38 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+
+    android:id="@+id/boss_description_1"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:ellipsize="marquee"
+    android:fontFamily="sans-serif-light"
+    android:padding="8dp"
+    android:scrollHorizontally="false"
+    android:textColor="@color/baseWhite"
+    android:textSize="16sp" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-
-
-        android:id="@+id/boss_description_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="marquee"
-        android:fontFamily="sans-serif-light"
-        android:padding="8dp"
-        android:scrollHorizontally="false"
-        android:textColor="@color/baseWhite"
-        android:textSize="16sp"
-        />
-    <androidx.appcompat.widget.AppCompatTextView
-
-
-        android:id="@+id/boss_description_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="marquee"
-        android:fontFamily="sans-serif-light"
-        android:padding="8dp"
-        android:text="TEXT TEST XTET"
-        android:scrollHorizontally="false"
-        android:textColor="@color/baseWhite"
-        android:textSize="16sp"
-        />
-</LinearLayout>
 

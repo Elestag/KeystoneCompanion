@@ -61,7 +61,8 @@ sealed class AddonDungeon(val nameResId: Int, val imageResId: Int) {
         val boss1 = DungeonBossImpl(
             R.string.melidrussa_chillworn,
             R.drawable.creature_melidrussa_chilworn,
-            R.string.description_melidrussa_chillworn
+            R.string.description_melidrussa_chillworn,
+            "Fucks tank up"
         )
         val boss2 = DungeonBossImpl(
             R.string.kokia_blazehoof,

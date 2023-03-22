@@ -29,17 +29,28 @@ class DetailedItemAdapter(private val items: List<DungeonBossImpl>) :
         holder.description.setText(item.descriptionResId)
 
 
-        holder.expandable.setOnExpandListener {
+        holder.expandableDescr.setOnExpandListener {
             holder.description.maxLines = Int.MAX_VALUE
         }
 
-        holder.expandable.setOnClickListener {
-            if (holder.expandable.isExpanded){
-                holder.expandable.collapse()
-            }else{
-                holder.expandable.expand()
-            }
+        holder.expandableTips.setOnExpandListener {
+            holder.bossTips.maxLines = Int.MAX_VALUE
+        }
 
+        holder.expandableDescr.setOnClickListener {
+            if (holder.expandableDescr.isExpanded) {
+                holder.expandableDescr.collapse()
+            } else {
+                holder.expandableDescr.expand()
+            }
+        }
+
+        holder.expandableTips.setOnClickListener {
+            if (holder.expandableTips.isExpanded) {
+                holder.expandableTips.collapse()
+            } else {
+                holder.expandableTips.expand()
+            }
         }
 
     }
@@ -52,7 +63,9 @@ class DetailedItemAdapter(private val items: List<DungeonBossImpl>) :
         val name: TextView = view.findViewById(R.id.boss_name_1)
         val image: ImageView = view.findViewById(R.id.boss_icon_1)
         val description: TextView = view.findViewById(R.id.boss_description_1)
-        val expandable: ExpandableLayout = view.findViewById(R.id.expandable_description)
+        val bossTips: TextView = view.findViewById(R.id.boss_tips_1)
+        val expandableDescr: ExpandableLayout = view.findViewById(R.id.expandable_description)
+        val expandableTips: ExpandableLayout = view.findViewById(R.id.expandable_tips)
 
     }
 }
