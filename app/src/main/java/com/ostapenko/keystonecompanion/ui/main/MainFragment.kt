@@ -7,21 +7,22 @@ import com.ostapenko.keystonecompanion.R
 import com.ostapenko.keystonecompanion.databinding.FragmentMainBinding
 import com.ostapenko.keystonecompanion.model.dungeons.AffixesSet
 import com.ostapenko.keystonecompanion.ui.base.viewBinding
-import com.ostapenko.keystonecompanion.viewmodel.main.AffixesViewModel
+import com.ostapenko.keystonecompanion.viewmodel.main.NetworkViewModel
 
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     private val binding by viewBinding { FragmentMainBinding.bind(it) }
-    private val viewModel = AffixesViewModel()
+    private val viewModel = NetworkViewModel()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO сделать ретрофит с рейдер ио для отображения цены жетона (или вовхед)
+        //TODO подумать что еще сделать
+        //TODO сделать короткие тактики на боссов, потом подумать насчет треша
 
 
         viewModel.myData.observe(viewLifecycleOwner) {
-            binding.tokenPrice.text = getString(AffixesSet.Tyrannical.nameResId)
+           // binding.tokenPrice.text = getString(AffixesSet.Tyrannical.nameResId)
             val tyraFortAffix = it[0].replace("[", "").replace("]", "")
             val seasonAffix = it[3].replace("[", "").replace("]", "")
             val oneAffix = it[1].replace("[", "").replace("]", "")
@@ -30,6 +31,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             checkAffixOne(oneAffix)
             checkAffixTwo(twoAffix)
             binding.seasonAffix.setImageResource(R.drawable.affix_thundering)
+        }
+
+        viewModel.tokenPrice.observe(viewLifecycleOwner){
+            binding.tokenPrice.text = it
         }
         /*binding.affixOne.setImageResource(R.drawable.affix_spiteful)
         binding.affixTwo.setImageResource(R.drawable.affix_grievous)
