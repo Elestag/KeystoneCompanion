@@ -3,7 +3,7 @@
     <string name="dungeons_button_label">Dungeons</string>
     <string name="mythic_button_label">Mythic+</string>
     <string name="weekly_modifiers_label">Weekly M+ modifiers</string>
-    <string name="token_price">Token price</string>
+    <string name="token_price">WoW Token price</string>
     <string name="boss_description">Boss description</string>
     <string name="boss_tips">Boss tips and tricks</string>
 
@@ -230,4 +230,22 @@
     <string name="affix_spiteful">Spiteful</string>
     <string name="affix_storming">Storming</string>
     <string name="affix_thundering">Thundering</string>
+
+
+    <!--Bosses tips and tricks -->
+
+    <!--Azure -->
+    <string name="tips_leymor">After destroying Ley-Line Sprouts(trees) they spawn Volatile Saplings, go to your tank, so he can easily take aggro on them.</string>
+    <string name="tips_azureblade">If you have more than 1 range dps, you can move this boss to the edge of the room and do some dmg while she moves to the center to start second phase.\nArcane Cleave is a 10 yard ability so you can outrange it.</string>
+    <string name="tips_telash_greywing">Leave space for people standing a little behind with Frost Bomb.</string>
+    <string name="tips_umbrelskul">Tank boss near the wall will cause Detonating Crystals to spawn from 1 side and close to each other.</string>
+    <!--AA -->
+    <string name="tips_vexamus">Sometimes there will be an overlap of Arcane Fissure and Mana Bomb, if you don\'t have </string>
+    <string name="tips_overgrown_ancient">Overgrown Ancient</string>
+    <string name="tips_crawth">Crawth</string>
+    <string name="tips_echo_of_doragosa">Echo of Doragosa</string>
+    <!--RLP -->
+    <string name="tips_melidrussa_chillworn">Stack and move as a group when she cast Hailbombs.\nSilence or cc whelps, that will help your tank to take less dmg. </string>
+    <string name="tips_kokia_blazehoof">You can bait Ritual of Blazebinding little ahead, so you will have space to bait Molten Boulder.\nThis require some teamplay, but in result this will make the fight much easier.</string>
+    <string name="tips_kyrakka_and_erkhart_stormvein">At the start of second phase there is an overlap of Infernocore and Interrupting Cloudburst, so try to save your defense ability for this moment.\nAlways kill Kyrakka first.</string>
 </resources>

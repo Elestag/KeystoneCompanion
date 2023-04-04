@@ -14,18 +14,18 @@ import com.ostapenko.keystonecompanion.ui.main.adapters.MplusItemAdapter
 class MplusFragment : Fragment(R.layout.item_dungeons_rv) {
 
     private val seasonDungeonList: List<SeasonDungeon> = listOf(
-        SeasonDungeon.AlgetharAcademy,
-        SeasonDungeon.CourtOfStars,
-        SeasonDungeon.HallsOfValor,
-        SeasonDungeon.RubyLifePools,
-        SeasonDungeon.TempleOfJadeSerpent,
-        SeasonDungeon.ShadowmoonBurialGrounds,
-        SeasonDungeon.TheAzureVault,
-        SeasonDungeon.TheNokhudOffensive
+        SeasonDungeon.BrackenhideHollow,
+        SeasonDungeon.Freehold,
+        SeasonDungeon.HallsOfInfusion,
+        SeasonDungeon.NeltarionsLair,
+        SeasonDungeon.Neltharus,
+        SeasonDungeon.TheUnderrot,
+        SeasonDungeon.TheVortexPinnacle,
+        SeasonDungeon.UldamanLegacyOfTyr
     )
 
     private val binding by viewBinding { ItemDungeonsRvBinding.bind(it) }
-    private val myAdapter = MplusItemAdapter( seasonDungeonList)
+    private val myAdapter = MplusItemAdapter(seasonDungeonList)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

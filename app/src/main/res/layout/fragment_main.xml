@@ -20,6 +20,7 @@
 
     <!-- Add a horizontal layout for the buttons -->
     <LinearLayout
+        android:layout_marginTop="150dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -89,48 +90,6 @@
             android:layout_weight="1"
             />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/season_affix"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_weight="1"
-             />
-
-    </LinearLayout>
-
-
-    <!-- Add a view for the tips on passing -->
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tips_textview"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="16dp"
-        android:text="@string/token_price"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/token_price"
-            style="@style/TextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="345,954"
-            android:textSize="44sp" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:src="@drawable/inv_misc_coin_02" />
 
     </LinearLayout>
 

@@ -40,52 +40,54 @@ class DetailedMplusFragment : Fragment(R.layout.item_dungeon_detailed_rv) {
     private fun showDetailedDungeon(name: String): List<DungeonBossImpl> {
         var dungeonBosses = listOf<DungeonBossImpl>()
         when (name) {
-            "The Azure Vault" -> dungeonBosses = listOf(
-                SeasonDungeon.TheAzureVault.boss1,
-                SeasonDungeon.TheAzureVault.boss2,
-                SeasonDungeon.TheAzureVault.boss3,
-                SeasonDungeon.TheAzureVault.boss4
+            "Brackenhide Hollow" -> dungeonBosses = listOf(
+                SeasonDungeon.BrackenhideHollow.boss1,
+                SeasonDungeon.BrackenhideHollow.boss2,
+                SeasonDungeon.BrackenhideHollow.boss3,
+                SeasonDungeon.BrackenhideHollow.boss4
             )
-            "Algeth\'ar Academy" -> dungeonBosses = listOf(
-                SeasonDungeon.AlgetharAcademy.boss1,
-                SeasonDungeon.AlgetharAcademy.boss2,
-                SeasonDungeon.AlgetharAcademy.boss3,
-                SeasonDungeon.AlgetharAcademy.boss4
+            "Uldaman: Legacy of Tyr" -> dungeonBosses = listOf(
+                SeasonDungeon.UldamanLegacyOfTyr.boss1,
+                SeasonDungeon.UldamanLegacyOfTyr.boss2,
+                SeasonDungeon.UldamanLegacyOfTyr.boss3,
+                SeasonDungeon.UldamanLegacyOfTyr.boss4,
+                SeasonDungeon.UldamanLegacyOfTyr.boss5
+
             )
-            "Ruby Life Pools" -> dungeonBosses = listOf(
-                SeasonDungeon.RubyLifePools.boss1,
-                SeasonDungeon.RubyLifePools.boss2,
-                SeasonDungeon.RubyLifePools.boss3,
+            "Neltharus" -> dungeonBosses = listOf(
+                SeasonDungeon.Neltharus.boss1,
+                SeasonDungeon.Neltharus.boss2,
+                SeasonDungeon.Neltharus.boss3,
+                SeasonDungeon.Neltharus.boss4
             )
-            "The Nokhud Offensive" -> dungeonBosses = listOf(
-                SeasonDungeon.TheNokhudOffensive.boss1,
-                SeasonDungeon.TheNokhudOffensive.boss2,
-                SeasonDungeon.TheNokhudOffensive.boss3,
-                SeasonDungeon.TheNokhudOffensive.boss4
+            "Halls of Infusion" -> dungeonBosses = listOf(
+                SeasonDungeon.HallsOfInfusion.boss1,
+                SeasonDungeon.HallsOfInfusion.boss2,
+                SeasonDungeon.HallsOfInfusion.boss3,
+                SeasonDungeon.HallsOfInfusion.boss4
             )
-            "Court of Stars" -> dungeonBosses = listOf(
-                SeasonDungeon.CourtOfStars.boss1,
-                SeasonDungeon.CourtOfStars.boss2,
-                SeasonDungeon.CourtOfStars.boss3,
+            "Neltharion\'s" -> dungeonBosses = listOf(
+                SeasonDungeon.NeltarionsLair.boss1,
+                SeasonDungeon.NeltarionsLair.boss2,
+                SeasonDungeon.NeltarionsLair.boss3,
+                SeasonDungeon.NeltarionsLair.boss4
             )
-            "Halls of Valor" -> dungeonBosses = listOf(
-                SeasonDungeon.HallsOfValor.boss1,
-                SeasonDungeon.HallsOfValor.boss2,
-                SeasonDungeon.HallsOfValor.boss3,
-                SeasonDungeon.HallsOfValor.boss4,
-                SeasonDungeon.HallsOfValor.boss5
+            "The Underrot" -> dungeonBosses = listOf(
+                SeasonDungeon.TheUnderrot.boss1,
+                SeasonDungeon.TheUnderrot.boss2,
+                SeasonDungeon.TheUnderrot.boss3,
+                SeasonDungeon.TheUnderrot.boss4
             )
-            "Temple of the Jade Serpent" -> dungeonBosses = listOf(
-                SeasonDungeon.TempleOfJadeSerpent.boss1,
-                SeasonDungeon.TempleOfJadeSerpent.boss2,
-                SeasonDungeon.TempleOfJadeSerpent.boss3,
-                SeasonDungeon.TempleOfJadeSerpent.boss4
+            "Freehold" -> dungeonBosses = listOf(
+                SeasonDungeon.Freehold.boss1,
+                SeasonDungeon.Freehold.boss2,
+                SeasonDungeon.Freehold.boss3,
+                SeasonDungeon.Freehold.boss4
             )
-            "Shadowmoon Burial Grounds" -> dungeonBosses = listOf(
-                SeasonDungeon.ShadowmoonBurialGrounds.boss1,
-                SeasonDungeon.ShadowmoonBurialGrounds.boss2,
-                SeasonDungeon.ShadowmoonBurialGrounds.boss3,
-                SeasonDungeon.ShadowmoonBurialGrounds.boss4
+            "The Vortex Pinnacle" -> dungeonBosses = listOf(
+                SeasonDungeon.TheVortexPinnacle.boss1,
+                SeasonDungeon.TheVortexPinnacle.boss2,
+                SeasonDungeon.TheVortexPinnacle.boss3
             )
         }
         return dungeonBosses

@@ -12,9 +12,6 @@ class NetworkViewModel : BaseViewModel() {
 
     private var retrofitFetcher: RetrofitFetcher = RetrofitFetcher()
 
-    private val _tokenPrice = MutableLiveData<String>()
-    val tokenPrice: LiveData<String> = _tokenPrice
-
     private val _myData = MutableLiveData<List<String>>()
     val myData: LiveData<List<String>> = _myData
 
@@ -24,9 +21,7 @@ class NetworkViewModel : BaseViewModel() {
             retrofitFetcher.fetchDataFromRaiderIoApi().collect { data ->
                 _myData.postValue(data)
             }
-            retrofitFetcher.fetchDataFromBlizzardApi().collect { data ->
-                _tokenPrice.postValue(data)
-            }
+
 
         }
     }

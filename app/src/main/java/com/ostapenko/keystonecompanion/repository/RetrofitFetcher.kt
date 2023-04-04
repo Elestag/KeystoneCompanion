@@ -33,18 +33,4 @@ class RetrofitFetcher {
     }.flowOn(Dispatchers.IO) // Run the Flow on an IO dispatcher to avoid blocking the main thread
 
 
-    fun fetchDataFromBlizzardApi(): Flow<String> = flow<String> {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://eu.api.blizzard.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(NetworkApi::class.java)
-
-        val tokenPriceRaw = apiService.getTokenPrice().tokenPrice
-
-        val tokenPrice = tokenPriceRaw.subSequence(0, 3).toString() + "," + tokenPriceRaw.subSequence(3,6).toString()
-      //  Log.d(TAG, "$tokenPriceRaw, and subsequence $tokenPrice")
-        emit(tokenPrice)
-    }.flowOn(Dispatchers.IO)
 }

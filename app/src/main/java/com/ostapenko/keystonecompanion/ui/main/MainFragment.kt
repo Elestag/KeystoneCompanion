@@ -22,24 +22,18 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
 
         viewModel.myData.observe(viewLifecycleOwner) {
-           // binding.tokenPrice.text = getString(AffixesSet.Tyrannical.nameResId)
+            // binding.tokenPrice.text = getString(AffixesSet.Tyrannical.nameResId)
             val tyraFortAffix = it[0].replace("[", "").replace("]", "")
-            val seasonAffix = it[3].replace("[", "").replace("]", "")
             val oneAffix = it[1].replace("[", "").replace("]", "")
             val twoAffix = it[2].replace("[", "").replace("]", "")
             checkTyraFortAffix(tyraFortAffix)
             checkAffixOne(oneAffix)
             checkAffixTwo(twoAffix)
-            binding.seasonAffix.setImageResource(R.drawable.affix_thundering)
         }
-
-        viewModel.tokenPrice.observe(viewLifecycleOwner){
-            binding.tokenPrice.text = it
-        }
-        /*binding.affixOne.setImageResource(R.drawable.affix_spiteful)
-        binding.affixTwo.setImageResource(R.drawable.affix_grievous)
-
-        binding.tyraFortAffix.setImageResource(R.drawable.affix_fortified)*/
+//TODO сейчас каждый раз нужно проходить авторизацию и менять токен, подумать как исправить
+        /* viewModel.tokenPrice.observe(viewLifecycleOwner){
+             binding.tokenPrice.text = it
+         }*/
 
         binding.dungeonsButton.setOnClickListener {
             val transaction = activity?.supportFragmentManager?.beginTransaction()
@@ -56,16 +50,16 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
     }
 
-    private fun checkTyraFortAffix(name: String){
-        if (name == getString(AffixesSet.Tyrannical.nameResId)){
+    private fun checkTyraFortAffix(name: String) {
+        if (name == getString(AffixesSet.Tyrannical.nameResId)) {
             binding.tyraFortAffix.setImageResource(R.drawable.affix_tyrannical)
-        }else{
+        } else {
             binding.tyraFortAffix.setImageResource(R.drawable.affix_fortified)
         }
     }
 
-    private fun checkAffixOne(name: String){
-        when(name){
+    private fun checkAffixOne(name: String) {
+        when (name) {
             getString(AffixesSet.Volcanic.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_volcanic)
             getString(AffixesSet.Raging.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_raging)
             getString(AffixesSet.Bolstering.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_bolstering)
@@ -78,8 +72,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             getString(AffixesSet.Storming.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_storming)
         }
     }
-    private fun checkAffixTwo(name: String){
-        when(name){
+
+    private fun checkAffixTwo(name: String) {
+        when (name) {
             getString(AffixesSet.Volcanic.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_volcanic)
             getString(AffixesSet.Raging.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_raging)
             getString(AffixesSet.Bolstering.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_bolstering)

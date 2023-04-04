@@ -3,215 +3,206 @@ package com.ostapenko.keystonecompanion.model.dungeons
 import com.ostapenko.keystonecompanion.R
 import com.ostapenko.keystonecompanion.model.dungeons.boss.DungeonBossImpl
 
+
 sealed class SeasonDungeon(val name: String, val imageResId: Int, val mPlus: Boolean = true) {
-    object TheAzureVault :
-        SeasonDungeon("The Azure Vault", R.drawable.the_azure_vault_small) // id 1203
+    object BrackenhideHollow :
+        SeasonDungeon("Brackenhide Hollow", R.drawable.the_azure_vault_small)
     {
         val boss1 = DungeonBossImpl(
-            R.string.leymor,
-            R.drawable.creature_leymor,
-            R.string.description_leymor
+            R.string.hackclaws_war_band,
+            R.drawable.creature_rira_hackclaw,
+            R.string.description_hackclaws_war_band
         )
         val boss2 = DungeonBossImpl(
-            R.string.azureblade,
-            R.drawable.creature_azureblade,
-            R.string.description_azureblade
+            R.string.treemouth,
+            R.drawable.creature_treemouth,
+            R.string.description_treemouth
         )
         val boss3 = DungeonBossImpl(
-            R.string.telash_greywing,
-            R.drawable.creature_telash_greywing,
-            R.string.description_telash_greywing
+            R.string.gutshot,
+            R.drawable.creature_gutshot,
+            R.string.description_gutshot
         )
         val boss4 = DungeonBossImpl(
-            R.string.umbrelskul,
-            R.drawable.creature_umbrelskul,
-            R.string.description_umbrelskul
+            R.string.decatriarch_wratheye,
+            R.drawable.creature_decatriarch_wratheye,
+            R.string.description_decatriarch_wratheye
         )
     }
 
-    object AlgetharAcademy :
-        SeasonDungeon("Algeth'ar Academy", R.drawable.algethar_academy_small) // id 1201
+    object UldamanLegacyOfTyr :
+        SeasonDungeon("Uldaman: Legacy of Tyr", R.drawable.the_azure_vault_small)
     {
         val boss1 = DungeonBossImpl(
-            R.string.vexamus,
-            R.drawable.creature_vexamus,
-            R.string.description_vexamus
+            R.string.the_lost_dwarves,
+            R.drawable.creature_baelog,
+            R.string.description_the_lost_dwarves
         )
         val boss2 = DungeonBossImpl(
-            R.string.crawth,
-            R.drawable.creature_crawth,
-            R.string.description_crawth
+            R.string.bromach,
+            R.drawable.creature_bromach,
+            R.string.description_bromach
         )
         val boss3 = DungeonBossImpl(
-            R.string.overgrown_ancient,
-            R.drawable.creature_overgrown_ancient,
-            R.string.description_overgrown_ancient
+            R.string.sentinel_talondras,
+            R.drawable.creature_sentinel_talondras,
+            R.string.description_sentinel_talondras
         )
         val boss4 = DungeonBossImpl(
-            R.string.echo_of_doragosa,
-            R.drawable.creature_echo_of_doragosa,
-            R.string.description_echo_of_doragosa
-        )
-    }
-
-    object RubyLifePools :
-        SeasonDungeon("Ruby Life Pools", R.drawable.ruby_life_pools_small) // id 1202
-    {
-        val boss1 = DungeonBossImpl(
-            R.string.melidrussa_chillworn,
-            R.drawable.creature_melidrussa_chilworn,
-            R.string.description_melidrussa_chillworn
-        )
-        val boss2 = DungeonBossImpl(
-            R.string.kokia_blazehoof,
-            R.drawable.creature_kokkia_blazehoof,
-            R.string.description_kokia_blazehoof
-        )
-        val boss3 = DungeonBossImpl(
-            R.string.kyrakka_and_erkhart_stormvein,
-            R.drawable.creature_erkhart_stormvein,
-            R.string.description_kyrakka_and_erkhart_stormvein
-        )
-    }
-
-    object TheNokhudOffensive :
-        SeasonDungeon("The Nokhud Offensive", R.drawable.the_nokhud_offensive_small) // id 1198
-    {
-        val boss1 = DungeonBossImpl(
-            R.string.granyth,
-            R.drawable.creature_granyth,
-            R.string.description_granyth
-        )
-        val boss2 = DungeonBossImpl(
-            R.string.the_raging_tempest,
-            R.drawable.creature_raging_tempest,
-            R.string.description_the_raging_tempest
-        )
-        val boss3 = DungeonBossImpl(
-            R.string.teera_and_maruuk,
-            R.drawable.creature_teera,
-            R.string.description_teera_and_maruuk
-        )
-        val boss4 = DungeonBossImpl(
-            R.string.balakar_khan,
-            R.drawable.creature_balakar_khan,
-            R.string.balakar_khan
-        )
-    }
-
-    object CourtOfStars :
-        SeasonDungeon("Court of Stars", R.drawable.court_of_stars_small)
-    //"id": 800
-    {
-        val boss1 = DungeonBossImpl(
-            R.string.patrol_captain_gerdo,
-            R.drawable.creature_gerdo,
-            R.string.description_patrol_captain_gerdo
-        )
-        val boss2 = DungeonBossImpl(
-            R.string.talixae_flamewreath,
-            R.drawable.creature_talixae,
-            R.string.description_talixae_flamewreath
-        )
-        val boss3 = DungeonBossImpl(
-            R.string.advisor_melandrus,
-            R.drawable.creature_melandrus,
-            R.string.description_advisor_melandrus
-        )
-    }
-
-    object HallsOfValor :
-        SeasonDungeon("Halls of Valor", R.drawable.halls_of_valor_small)
-    //"id": 721
-    {
-        val boss1 = DungeonBossImpl(
-            R.string.hymdall,
-            R.drawable.creature_hymdall,
-            R.string.description_hymdall
-        )
-        val boss2 = DungeonBossImpl(
-            R.string.hyrja,
-            R.drawable.creature_hyrja,
-            R.string.description_hyrja
-        )
-        val boss3 = DungeonBossImpl(
-            R.string.fenryr,
-            R.drawable.creature_fenryr,
-            R.string.description_fenryr
-        )
-        val boss4 = DungeonBossImpl(
-            R.string.god_King_skovald,
-            R.drawable.creature_skovald,
-            R.string.description_god_King_skovald
+            R.string.emberon,
+            R.drawable.creature_emberon,
+            R.string.description_emberon
         )
         val boss5 = DungeonBossImpl(
-            R.string.odyn,
-            R.drawable.creature_odyn,
-            R.string.description_odyn
+            R.string.chrono_lord_deios,
+            R.drawable.creature_deios,
+            R.string.description_chrono_lord_deios
         )
     }
 
-    object TempleOfJadeSerpent :
-        SeasonDungeon("Temple of the Jade Serpent", R.drawable.temple_of_the_jade_serpent_small)
-    //"id": 313
+    object Neltharus : SeasonDungeon("Neltharus", R.drawable.the_azure_vault_small)
     {
         val boss1 = DungeonBossImpl(
-            R.string.wise_mari,
-            R.drawable.creature_wise_mari,
-            R.string.description_wise_mari
+            R.string.chargath_bane_of_scales,
+            R.drawable.creature_chargath,
+            R.string.description_chargath_bane_of_scales
         )
         val boss2 = DungeonBossImpl(
-            R.string.lorewalker_stonestep,
-            R.drawable.creature_lorewalker,
-            R.string.description_lorewalker_stonestep
+            R.string.forgemaster_gorek,
+            R.drawable.creature_forgemaster_gorek,
+            R.string.description_forgemaster_gorek
         )
         val boss3 = DungeonBossImpl(
-            R.string.liu_flameheart,
-            R.drawable.creature_liu,
-            R.string.description_liu_flameheart
+            R.string.magmatusk,
+            R.drawable.creature_magmatusk,
+            R.string.description_magmatusk
         )
         val boss4 = DungeonBossImpl(
-            R.string.sha_of_doubt,
-            R.drawable.creature_sha_of_doubt,
-            R.string.description_sha_of_doubt
+            R.string.warlord_sargha,
+            R.drawable.creature_warlord_sargha,
+            R.string.description_warlord_sargha
         )
     }
 
-    object ShadowmoonBurialGrounds : SeasonDungeon(
-        "Shadowmoon Burial Grounds",
-        R.drawable.shadowmoon_burial_grounds_small
-    ) // id 537
+    object HallsOfInfusion :
+        SeasonDungeon("Halls of Infusion", R.drawable.the_azure_vault_small)
     {
         val boss1 = DungeonBossImpl(
-            R.string.sadana_bloodfury,
-            R.drawable.creature_sadana,
-            R.string.description_sadana_bloodfury
+            R.string.watcher_irideus,
+            R.drawable.creature_watcher_irideus,
+            R.string.description_watcher_irideus
         )
         val boss2 = DungeonBossImpl(
-            R.string.nhallish,
-            R.drawable.creature_nhallish,
-            R.string.description_nhallish
+            R.string.gulping_goliath,
+            R.drawable.creature_gulping_goliath,
+            R.string.description_gulping_goliath
         )
         val boss3 = DungeonBossImpl(
-            R.string.bonemaw,
-            R.drawable.creature_bonemaw,
-            R.string.description_bonemaw
+            R.string.khajin_the_unyielding,
+            R.drawable.creature_khajin,
+            R.string.description_khajin_the_unyielding
         )
         val boss4 = DungeonBossImpl(
-            R.string.nerzhul,
-            R.drawable.creature_nerzhul,
-            R.string.description_nerzhul
+            R.string.primal_tsunami,
+            R.drawable.creature_primal_tsunami,
+            R.string.description_primal_tsunami
         )
     }
 
-    //next season "name": "Neltharion's Lair",+
-    //      "id": 767
-//      "name": "The Underrot",+
-    //      "id": 1022
-//      "name": "Freehold",+
-    //      "id": 1001
-//   "name": "The Vortex Pinnacle",+
-//      "id": 68
+    object NeltarionsLair :
+        SeasonDungeon("Neltharion\'s", R.drawable.neltharions_lair_small)
+    {
+        val boss1 = DungeonBossImpl(
+            R.string.rokmora,
+            R.drawable.creature_rokmora,
+            R.string.description_rokmora
+        )
+        val boss2 = DungeonBossImpl(
+            R.string.ularogg_cragshaper,
+            R.drawable.creature_ularogg,
+            R.string.description_ularogg_cragshaper
+        )
+        val boss3 = DungeonBossImpl(
+            R.string.naraxas,
+            R.drawable.creature_naraxas,
+            R.string.description_naraxas
+        )
+        val boss4 = DungeonBossImpl(
+            R.string.dargrul_the_underking,
+            R.drawable.creature_dargrul,
+            R.string.description_dargrul_the_underking
+        )
+    }
 
+    object TheUnderrot :
+        SeasonDungeon("The Underrot", R.drawable.the_underrot_small)
+    {
+        val boss1 = DungeonBossImpl(
+            R.string.elder_leaxa,
+            R.drawable.creature_elder_leaxa,
+            R.string.description_elder_leaxa
+        )
+        val boss2 = DungeonBossImpl(
+            R.string.cragmaw_the_infested,
+            R.drawable.creature_cragmaw,
+            R.string.description_cragmaw_the_infested
+        )
+        val boss3 = DungeonBossImpl(
+            R.string.sporecaller_zancha,
+            R.drawable.creature_sporecaller_zancha,
+            R.string.description_sporecaller_zancha
+        )
+        val boss4 = DungeonBossImpl(
+            R.string.unbound_abomination,
+            R.drawable.creature_unbound_abomination,
+            R.string.description_unbound_abomination
+        )
+    }
 
+    object Freehold :
+        SeasonDungeon("Freehold", R.drawable.freehold_small)
+    {
+        val boss1 = DungeonBossImpl(
+            R.string.skycapn_kragg,
+            R.drawable.creature_kragg,
+            R.string.description_skycapn_kragg
+        )
+        val boss2 = DungeonBossImpl(
+            R.string.council_o_captains,
+            R.drawable.creature_eudora,
+            R.string.description_council_o_captains
+        )
+        val boss3 = DungeonBossImpl(
+            R.string.ring_of_booty,
+            R.drawable.creature_shark_puncher,
+            R.string.description_ring_of_booty
+        )
+        val boss4 = DungeonBossImpl(
+            R.string.harlan_sweete,
+            R.drawable.creature_harlan,
+            R.string.description_harlan_sweete
+        )
+    }
+
+    object TheVortexPinnacle : SeasonDungeon(
+        "The Vortex Pinnacle",
+        R.drawable.the_vortex_pinnacle_small
+    )
+    {
+        val boss1 = DungeonBossImpl(
+            R.string.grand_vizier_ertan,
+            R.drawable.creature_ertan,
+            R.string.description_grand_vizier_ertan
+        )
+        val boss2 = DungeonBossImpl(
+            R.string.altairus,
+            R.drawable.creature_altairus,
+            R.string.description_altairus
+        )
+        val boss3 = DungeonBossImpl(
+            R.string.asaad_caliph_of_zephyrs,
+            R.drawable.creature_asaad,
+            R.string.description_asaad_caliph_of_zephyrs
+        )
+    }
 }
