@@ -105,7 +105,7 @@ sealed class AddonDungeon(val nameResId: Int, val imageResId: Int) {
     }
 
     object BrackenhideHollow :
-        AddonDungeon(R.string.brackenhide_hollow, R.drawable.the_azure_vault_small) // id 1196
+        AddonDungeon(R.string.brackenhide_hollow, R.drawable.the_azure_vault_small) // id 1196 try later - https://render.worldofwarcraft.com/eu/zones/brackenhide-hollow-small.jpg
     {
         val boss1 = DungeonBossImpl(
             R.string.hackclaws_war_band,
@@ -130,7 +130,7 @@ sealed class AddonDungeon(val nameResId: Int, val imageResId: Int) {
     }
 
     object UldamanLegacyOfTyr :
-        AddonDungeon(R.string.uldaman_legacy_of_tyr, R.drawable.the_azure_vault_small) // id 1197
+        AddonDungeon(R.string.uldaman_legacy_of_tyr, R.drawable.the_azure_vault_small) // id 1197 try later -  https://render.worldofwarcraft.com/eu/zones/uldaman-legacy-of-tyr-small.jpg
     {
         val boss1 = DungeonBossImpl(
             R.string.the_lost_dwarves,
@@ -159,7 +159,7 @@ sealed class AddonDungeon(val nameResId: Int, val imageResId: Int) {
         )
     }
 
-    object Neltharus : AddonDungeon(R.string.neltharus, R.drawable.the_azure_vault_small)// id 1199
+    object Neltharus : AddonDungeon(R.string.neltharus, R.drawable.the_azure_vault_small)// id 1199 try later - https://render.worldofwarcraft.com/eu/zones/neltharus-small.jpg
     {
         val boss1 = DungeonBossImpl(
             R.string.chargath_bane_of_scales,
@@ -184,7 +184,7 @@ sealed class AddonDungeon(val nameResId: Int, val imageResId: Int) {
     }
 
     object HallsOfInfusion :
-        AddonDungeon(R.string.halls_of_infusion, R.drawable.the_azure_vault_small)// id 1204
+        AddonDungeon(R.string.halls_of_infusion, R.drawable.the_azure_vault_small)// id 1204 try later - https://render.worldofwarcraft.com/eu/zones/halls-of-infusion-small.jpg
     {
         val boss1 = DungeonBossImpl(
             R.string.watcher_irideus,

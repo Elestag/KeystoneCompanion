@@ -216,7 +216,7 @@
     <string name="description_asaad_caliph_of_zephyrs">The fearsome elemental Asaad was named guardian of the Vortex Pinnacle by Al\'Akir himself. With Siamat, Lord of the South Wind, imprisoned by the Neferset tol\'vir, Asaad believes he may ascend to the Conclave of Wind if he performs his duties well.</string>
 
 
-    <!--Mythic+ affixes -->
+    <!--Mythic+ affixes TODO добавить новые аффиксы когда они добавят в апи -->
     <string name="affix_tyrannical">Tyrannical</string>
     <string name="affix_fortified">Fortified</string>
     <string name="affix_volcanic">Volcanic</string>
@@ -248,4 +248,31 @@
     <string name="tips_melidrussa_chillworn">Stack and move as a group when she cast Hailbombs.\nSilence or cc whelps, that will help your tank to take less dmg. </string>
     <string name="tips_kokia_blazehoof">You can bait Ritual of Blazebinding little ahead, so you will have space to bait Molten Boulder.\nThis require some teamplay, but in result this will make the fight much easier.</string>
     <string name="tips_kyrakka_and_erkhart_stormvein">At the start of second phase there is an overlap of Infernocore and Interrupting Cloudburst, so try to save your defense ability for this moment.\nAlways kill Kyrakka first.</string>
+    <!--NO -->
+    <string name="tips_granyth">You can cc 2–3 or even more Nokhud Saboteurs to do more boss dmg.</string>
+    <string name="tips_the_raging_tempest">Try to delay getting an orb while standing in the melee zone, so you can maintain stacks.</string>
+    <string name="tips_teera_and_maruuk">Stack when Teera casts Gale Arrow, this allows you better usage of def cds.</string>
+    <string name="tips_balakar_khan">Anyone who can use invisibility in fight can dodge Static Spear, just use your invisibility while he cast this ability.</string>
+    <!--BH -->
+    <string name="tips_hackclaws_war_band">Try to kill Tricktotem first, so you avoid buffing other bosses.</string>
+    <string name="tips_treemouth">Always let 1 dps to be consumed by Grasping vines.</string>
+    <string name="tips_gutshot">Stay near Ensnaring Traps because Rotfang Hyenas can trigger them.</string>
+    <string name="tips_decatriarch_wratheye">Always kill Rotburst Totem.</string>
+
+    <!--ULOT TODO-->
+    <string name="tips_the_lost_dwarves">The Lost Dwarves</string>
+    <string name="tips_bromach">Bromach</string>
+    <string name="tips_sentinel_talondras">Sentinel Talondras</string>
+    <string name="tips_emberon">Emberon</string>
+    <string name="tips_chrono_lord_deios">Chrono-Lord Deios</string>
+    <!--Neltharus TODO -->
+    <string name="tips_chargath_bane_of_scales">Chargath, Bane of Scales</string>
+    <string name="tips_forgemaster_gorek">Forgemaster Gorek</string>
+    <string name="tips_magmatusk">Magmatusk</string>
+    <string name="tips_warlord_sargha">Warlord Sargha</string>
+    <!--HOI TODO -->
+    <string name="tips_watcher_irideus">Watcher Irideus</string>
+    <string name="tips_gulping_goliath">Gulping Goliath</string>
+    <string name="tips_khajin_the_unyielding">Khajin the Unyielding</string>
+    <string name="tips_primal_tsunami">Primal Tsunami</string>
 </resources>
