@@ -2,6 +2,7 @@ package com.ostapenko.keystonecompanion.ui.main
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
@@ -24,9 +25,12 @@ class DetailedDungeonFragment : Fragment(R.layout.item_dungeon_detailed_rv) {
         val args = arguments
         val name = args?.getString("name")
 
+
         if (name !== null) {
 
             binding.dungeonTextViewName.text = name
+            binding.descriptionTextView.text = dungeonDescription(name)
+            setDungeonImage(binding.dungeonImageView, name)
             myAdapter = DetailedItemAdapter(showDetailedDungeon(name))
             binding.detailedDungeonRecyclerView.apply {
                 adapter = myAdapter
@@ -90,5 +94,35 @@ class DetailedDungeonFragment : Fragment(R.layout.item_dungeon_detailed_rv) {
             )
         }
         return dungeonBosses
+    }
+
+    private fun dungeonDescription(name: String): String {
+        var description = ""
+        when (name) {
+            "The Azure Vault" -> description = getString(R.string.description_azure_vault)
+            "Algeth\'ar Academy" -> description = getString(R.string.description_algethar_academy)
+            "Ruby Life Pools" -> description = getString(R.string.description_ruby_life_pools)
+            "The Nokhud Offensive" -> description =
+                getString(R.string.description_the_nokhud_offensive)
+            "Brackenhide Hollow" -> description = getString(R.string.description_brackenhide_hollow)
+            "Uldaman: Legacy of Tyr" -> description =
+                getString(R.string.description_uldaman_legacy_of_tyr)
+            "Neltharus" -> description = getString(R.string.description_neltharus)
+            "Halls of Infusion" -> description = getString(R.string.description_halls_of_infusion)
+        }
+        return description
+    }
+
+    private fun setDungeonImage(view: ImageView, name: String) {
+        when (name) {
+            "The Azure Vault" -> view.setImageResource(R.drawable.the_azure_vault_small)
+            "Algeth\'ar Academy" -> view.setImageResource(R.drawable.algethar_academy_small)
+            "Ruby Life Pools" -> view.setImageResource(R.drawable.ruby_life_pools_small)
+            "The Nokhud Offensive" -> view.setImageResource(R.drawable.the_nokhud_offensive_small)
+            "Brackenhide Hollow" -> view.setImageResource(R.drawable.algethar_academy_small)
+            "Uldaman: Legacy of Tyr" -> view.setImageResource(R.drawable.algethar_academy_small)
+            "Neltharus" ->  view.setImageResource(R.drawable.algethar_academy_small)
+            "Halls of Infusion" ->  view.setImageResource(R.drawable.algethar_academy_small)
+        }
     }
 }
