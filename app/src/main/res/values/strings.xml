@@ -260,16 +260,16 @@
     <string name="tips_decatriarch_wratheye">Always kill Rotburst Totem.</string>
 
     <!--ULOT TODO-->
-    <string name="tips_the_lost_dwarves">The Lost Dwarves</string>
-    <string name="tips_bromach">Bromach</string>
-    <string name="tips_sentinel_talondras">Sentinel Talondras</string>
-    <string name="tips_emberon">Emberon</string>
-    <string name="tips_chrono_lord_deios">Chrono-Lord Deios</string>
+    <string name="tips_the_lost_dwarves">Baelog does huge cleave damage in front of him.</string>
+    <string name="tips_bromach">Group up troggs near the Quaking Totem then kill totem. </string>
+    <string name="tips_sentinel_talondras">You can remove Inexorable by using your own cc.\nDo not chain cc her because it will increase her damage a lot.\nStun her with the Resonating Orb when she reach about 70 energy.</string>
+    <string name="tips_emberon">Emberon does huge cleave damage in front of him.</string>
+    <string name="tips_chrono_lord_deios">When he cast Rewind Timeflow go to puddle, it will increase your haste by 50\% and will not damage you.</string>
     <!--Neltharus TODO -->
-    <string name="tips_chargath_bane_of_scales">Chargath, Bane of Scales</string>
-    <string name="tips_forgemaster_gorek">Forgemaster Gorek</string>
-    <string name="tips_magmatusk">Magmatusk</string>
-    <string name="tips_warlord_sargha">Warlord Sargha</string>
+    <string name="tips_chargath_bane_of_scales">Do not break the chains before he cast Fiery Focus. Use your defense ability for this moment, or you can break 1 chain wait 4 sec then break 2.</string>
+    <string name="tips_forgemaster_gorek">Do not stand behind a tank.\nKeep a distance of 3 yards.</string>
+    <string name="tips_magmatusk">Stay grouped up near the wall for baiting Magma Lob and Blazing Charge.</string>
+    <string name="tips_warlord_sargha">Try to immune the curse from Magical Implements after taking 2nd Magical Implement.</string>
     <!--HOI TODO -->
     <string name="tips_watcher_irideus">Watcher Irideus</string>
     <string name="tips_gulping_goliath">Gulping Goliath</string>

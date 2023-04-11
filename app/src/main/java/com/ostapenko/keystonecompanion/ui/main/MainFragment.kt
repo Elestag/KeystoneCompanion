@@ -48,6 +48,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 ?.addToBackStack("MainFragment")
                 ?.commit()
         }
+
     }
 
     private fun checkTyraFortAffix(name: String) {

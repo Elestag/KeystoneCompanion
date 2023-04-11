@@ -20,9 +20,9 @@
 
     <!-- Add a horizontal layout for the buttons -->
     <LinearLayout
-        android:layout_marginTop="150dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
         android:orientation="horizontal"
         android:padding="16dp">
 
@@ -73,24 +73,22 @@
 
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:layout_weight="1"
-             />
+            android:layout_weight="1" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/affix_one"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:layout_weight="1"
-             />
+            android:layout_weight="1" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/affix_two"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
 
 
     </LinearLayout>
+
 
 </LinearLayout>
