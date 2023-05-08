@@ -18,9 +18,6 @@ class DetailedMplusFragment : Fragment(R.layout.item_dungeon_detailed_rv) {
     private val binding by viewBinding { ItemDungeonDetailedRvBinding.bind(it) }
     private lateinit var myAdapter: DetailedItemAdapter
 
-    //TODO сделать енам для описания данжей с картинками и роутами
-    //TODO найти известные типсы по текущим и будущим данжам и решить вводить ли такую категорию
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -119,10 +116,10 @@ class DetailedMplusFragment : Fragment(R.layout.item_dungeon_detailed_rv) {
             "The Underrot" -> view.setImageResource(R.drawable.the_underrot_small)
             "Freehold" -> view.setImageResource(R.drawable.freehold_small)
             "The Vortex Pinnacle" -> view.setImageResource(R.drawable.the_vortex_pinnacle_small)
-            "Brackenhide Hollow" -> view.setImageResource(R.drawable.algethar_academy_small)
-            "Uldaman: Legacy of Tyr" -> view.setImageResource(R.drawable.algethar_academy_small)
-            "Neltharus" -> view.setImageResource(R.drawable.algethar_academy_small)
-            "Halls of Infusion" -> view.setImageResource(R.drawable.algethar_academy_small)
+            "Brackenhide Hollow" -> view.setImageResource(R.drawable.brackenhide_hollow_small)
+            "Uldaman: Legacy of Tyr" -> view.setImageResource(R.drawable.uldaman_legacy_of_tyr_small)
+            "Neltharus" -> view.setImageResource(R.drawable.neltharus_small)
+            "Halls of Infusion" -> view.setImageResource(R.drawable.halls_of_infusion_small)
         }
     }
 

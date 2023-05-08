@@ -216,7 +216,7 @@
     <string name="description_asaad_caliph_of_zephyrs">The fearsome elemental Asaad was named guardian of the Vortex Pinnacle by Al\'Akir himself. With Siamat, Lord of the South Wind, imprisoned by the Neferset tol\'vir, Asaad believes he may ascend to the Conclave of Wind if he performs his duties well.</string>
 
 
-    <!--Mythic+ affixes TODO добавить новые аффиксы когда они добавят в апи -->
+    <!--Mythic+ affixes  -->
     <string name="affix_tyrannical">Tyrannical</string>
     <string name="affix_fortified">Fortified</string>
     <string name="affix_volcanic">Volcanic</string>
@@ -230,6 +230,10 @@
     <string name="affix_spiteful">Spiteful</string>
     <string name="affix_storming">Storming</string>
     <string name="affix_thundering">Thundering</string>
+    <string name="affix_entangling">Entangling</string>
+    <string name="affix_afflicted">Afflicted</string>
+    <string name="affix_incorporeal">Incorporeal</string>
+    <string name="affix_shielding">Shielding</string>
 
 
     <!--Bosses tips and tricks -->
@@ -240,10 +244,10 @@
     <string name="tips_telash_greywing">Leave space for people standing a little behind with Frost Bomb.</string>
     <string name="tips_umbrelskul">Tank boss near the wall will cause Detonating Crystals to spawn from 1 side and close to each other.</string>
     <!--AA -->
-    <string name="tips_vexamus">Sometimes there will be an overlap of Arcane Fissure and Mana Bomb, if you don\'t have </string>
-    <string name="tips_overgrown_ancient">Overgrown Ancient</string>
-    <string name="tips_crawth">Crawth</string>
-    <string name="tips_echo_of_doragosa">Echo of Doragosa</string>
+    <string name="tips_vexamus">Sometimes there will be an overlap of Arcane Fissure and Mana Bomb try to use your defense ability at this moment. </string>
+    <string name="tips_overgrown_ancient">Stack and move together with Germinate.\nMake sure your group have poison dispel for tank.\nUse defense ability before Burst Forth.\nUpon death Ancient Branch release healing circle, stay inside to remove Splinterbark.</string>
+    <string name="tips_crawth">Tank try to use defense ability on each Savage Peck.\nUse defense ability on Deafening Screech after 3–4 stacks.</string>
+    <string name="tips_echo_of_doragosa">Astral Breath can be outranged at 45+ yards.\nTry to place Arcane Rift near walls or existing Arcane Rifts.</string>
     <!--RLP -->
     <string name="tips_melidrussa_chillworn">Stack and move as a group when she cast Hailbombs.\nSilence or cc whelps, that will help your tank to take less dmg. </string>
     <string name="tips_kokia_blazehoof">You can bait Ritual of Blazebinding little ahead, so you will have space to bait Molten Boulder.\nThis require some teamplay, but in result this will make the fight much easier.</string>
@@ -253,26 +257,47 @@
     <string name="tips_the_raging_tempest">Try to delay getting an orb while standing in the melee zone, so you can maintain stacks.</string>
     <string name="tips_teera_and_maruuk">Stack when Teera casts Gale Arrow, this allows you better usage of def cds.</string>
     <string name="tips_balakar_khan">Anyone who can use invisibility in fight can dodge Static Spear, just use your invisibility while he cast this ability.</string>
+
     <!--BH -->
     <string name="tips_hackclaws_war_band">Try to kill Tricktotem first, so you avoid buffing other bosses.</string>
-    <string name="tips_treemouth">Always let 1 dps to be consumed by Grasping vines.</string>
+    <string name="tips_treemouth">Always let 1 player to be consumed by Grasping vines.</string>
     <string name="tips_gutshot">Stay near Ensnaring Traps because Rotfang Hyenas can trigger them.</string>
     <string name="tips_decatriarch_wratheye">Always kill Rotburst Totem.</string>
-
-    <!--ULOT TODO-->
+    <!--ULOT -->
     <string name="tips_the_lost_dwarves">Baelog does huge cleave damage in front of him.</string>
     <string name="tips_bromach">Group up troggs near the Quaking Totem then kill totem. </string>
     <string name="tips_sentinel_talondras">You can remove Inexorable by using your own cc.\nDo not chain cc her because it will increase her damage a lot.\nStun her with the Resonating Orb when she reach about 70 energy.</string>
     <string name="tips_emberon">Emberon does huge cleave damage in front of him.</string>
     <string name="tips_chrono_lord_deios">When he cast Rewind Timeflow go to puddle, it will increase your haste by 50\% and will not damage you.</string>
-    <!--Neltharus TODO -->
+    <!--Neltharus -->
     <string name="tips_chargath_bane_of_scales">Do not break the chains before he cast Fiery Focus. Use your defense ability for this moment, or you can break 1 chain wait 4 sec then break 2.</string>
     <string name="tips_forgemaster_gorek">Do not stand behind a tank.\nKeep a distance of 3 yards.</string>
     <string name="tips_magmatusk">Stay grouped up near the wall for baiting Magma Lob and Blazing Charge.</string>
     <string name="tips_warlord_sargha">Try to immune the curse from Magical Implements after taking 2nd Magical Implement.</string>
-    <!--HOI TODO -->
-    <string name="tips_watcher_irideus">Watcher Irideus</string>
-    <string name="tips_gulping_goliath">Gulping Goliath</string>
-    <string name="tips_khajin_the_unyielding">Khajin the Unyielding</string>
-    <string name="tips_primal_tsunami">Primal Tsunami</string>
+    <!--HOI -->
+    <string name="tips_watcher_irideus">Do not stand behind a tank on the first stage.\nWith Power Overload you can stack up and dispel.\nOn second stage you have to kill 3 Nullification Devices near boss very fast.</string>
+    <string name="tips_gulping_goliath">Always let 1 player to be Gulped then poison dispel.</string>
+    <string name="tips_khajin_the_unyielding">Do not stay near Ice Boulder until she cast Hailstorm.\nBefore Ice Boulder breaks use defense ability.</string>
+    <string name="tips_primal_tsunami">Try to be 10 yards away of Infused Globule.</string>
+
+    <!--NL -->
+    <string name="tips_rokmora">Always dodge Razor Shards or use defense ability.</string>
+    <string name="tips_ularogg_cragshaper">Always kill Bellowing Idols.</string>
+    <string name="tips_naraxas">She use Rancid Maw preferably on ranged dps, so stay in range but not 40 yards away. Tank can use this pool to dodge Spiked Tongue.\nAlso switch in Wormspeaker Devouts, do not let them go in melee.</string>
+    <string name="tips_dargrul_the_underking">Tank have to use active mitigation on Molten Crash or you will be thrown away from the boss, also you have to keep boss away from Crystal Spikes.\nYou can cc Molten Charskin with roots.</string>
+    <!--Underrot -->
+    <string name="tips_elder_leaxa">Always kill Blood Effigy.\nDodge Creeping Rot and Sanguine Feast.</string>
+    <string name="tips_cragmaw_the_infested">Tank place the boss facing the wall, before he cast Charge stack up on tank.\nYou can keep some Blood Tick Larvas alive for funnel.</string>
+    <string name="tips_sporecaller_zancha">Destroy Spore Pods with Shockwave and Upheaval, also you can walk through them to destroy but be ready to disease dispel or immune.</string>
+    <string name="tips_unbound_abomination">You can stack up before he cast Vile Expulsion, after he started cast move behind the boss.\nWith Cleansing Light stay near Vile Expulsion pools.</string>
+    <!--Freehold-->
+    <string name="tips_skycapn_kragg">Always kick Revitalizing brew.\nStay in melee to dodge Azerite Powder Shot.</string>
+    <string name="tips_council_o_captains">You always fight with 2 of 3 captains. My preference to kill Jolly>Eudora>Raoul.\nYou can line of sight Eudora\'s Grapeshot.</string>
+    <string name="tips_ring_of_booty">Any range dps or healer should bait Flailing Shark through the fight, do not let it be in melee.</string>
+    <string name="tips_harlan_sweete">Stack up before Cannon Barrage and move together.\nCC Irontide Grenadier.</string>
+    <!--Vortex -->
+    <string name="tips_grand_vizier_ertan">Do not touch cyclones.\nPosition yourself so you face the Lurking Tempest.</string>
+    <string name="tips_altairus">Position yourself so winds blows you before boss, then you get buff.\nDodge twisting winds.</string>
+    <string name="tips_asaad_caliph_of_zephyrs">You have to always be in Unstable Grounding Field(triangular). Move out of Static Cling or dispel.</string>
+
 </resources>

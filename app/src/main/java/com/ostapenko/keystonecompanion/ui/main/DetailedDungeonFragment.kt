@@ -119,10 +119,10 @@ class DetailedDungeonFragment : Fragment(R.layout.item_dungeon_detailed_rv) {
             "Algeth\'ar Academy" -> view.setImageResource(R.drawable.algethar_academy_small)
             "Ruby Life Pools" -> view.setImageResource(R.drawable.ruby_life_pools_small)
             "The Nokhud Offensive" -> view.setImageResource(R.drawable.the_nokhud_offensive_small)
-            "Brackenhide Hollow" -> view.setImageResource(R.drawable.algethar_academy_small)
-            "Uldaman: Legacy of Tyr" -> view.setImageResource(R.drawable.algethar_academy_small)
-            "Neltharus" ->  view.setImageResource(R.drawable.algethar_academy_small)
-            "Halls of Infusion" ->  view.setImageResource(R.drawable.algethar_academy_small)
+            "Brackenhide Hollow" -> view.setImageResource(R.drawable.brackenhide_hollow_small)
+            "Uldaman: Legacy of Tyr" -> view.setImageResource(R.drawable.uldaman_legacy_of_tyr_small)
+            "Neltharus" ->  view.setImageResource(R.drawable.neltharus_small)
+            "Halls of Infusion" ->  view.setImageResource(R.drawable.halls_of_infusion_small)
         }
     }
 }

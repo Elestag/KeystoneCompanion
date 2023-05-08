@@ -27,7 +27,7 @@ class DetailedItemAdapter(private val items: List<DungeonBossImpl>) :
         holder.name.setText(item.nameResId)
         holder.image.setImageResource(item.imageResId)
         holder.description.setText(item.descriptionResId)
-        holder.bossTips.setText(R.string.tips_melidrussa_chillworn)
+        holder.bossTips.setText(item.bossTips)
 
         holder.expandableDescr.setOnExpandListener {
             holder.description.maxLines = Int.MAX_VALUE

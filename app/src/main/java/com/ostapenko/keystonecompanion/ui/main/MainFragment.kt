@@ -17,12 +17,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO подумать что еще сделать
-        //TODO сделать короткие тактики на боссов, потом подумать насчет треша
-
-
         viewModel.myData.observe(viewLifecycleOwner) {
-            // binding.tokenPrice.text = getString(AffixesSet.Tyrannical.nameResId)
             val tyraFortAffix = it[0].replace("[", "").replace("]", "")
             val oneAffix = it[1].replace("[", "").replace("]", "")
             val twoAffix = it[2].replace("[", "").replace("]", "")
@@ -30,10 +25,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             checkAffixOne(oneAffix)
             checkAffixTwo(twoAffix)
         }
-//TODO сейчас каждый раз нужно проходить авторизацию и менять токен, подумать как исправить
-        /* viewModel.tokenPrice.observe(viewLifecycleOwner){
-             binding.tokenPrice.text = it
-         }*/
 
         binding.dungeonsButton.setOnClickListener {
             val transaction = activity?.supportFragmentManager?.beginTransaction()
@@ -71,6 +62,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             getString(AffixesSet.Quaking.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_quaking)
             getString(AffixesSet.Spiteful.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_spiteful)
             getString(AffixesSet.Storming.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_storming)
+            getString(AffixesSet.Storming.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_entagling)
+            getString(AffixesSet.Storming.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_afflicted)
+            getString(AffixesSet.Storming.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_incorporeal)
+            getString(AffixesSet.Storming.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_shielding)
         }
     }
 
@@ -86,6 +81,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             getString(AffixesSet.Quaking.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_quaking)
             getString(AffixesSet.Spiteful.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_spiteful)
             getString(AffixesSet.Storming.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_storming)
+            getString(AffixesSet.Storming.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_entagling)
+            getString(AffixesSet.Storming.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_afflicted)
+            getString(AffixesSet.Storming.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_incorporeal)
+            getString(AffixesSet.Storming.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_shielding)
         }
     }
 }
