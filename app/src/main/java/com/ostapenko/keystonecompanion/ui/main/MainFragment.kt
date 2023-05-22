@@ -1,6 +1,7 @@
 package com.ostapenko.keystonecompanion.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.ostapenko.keystonecompanion.R
@@ -18,12 +19,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.myData.observe(viewLifecycleOwner) {
-            val tyraFortAffix = it[0].replace("[", "").replace("]", "")
-            val oneAffix = it[1].replace("[", "").replace("]", "")
-            val twoAffix = it[2].replace("[", "").replace("]", "")
-            checkTyraFortAffix(tyraFortAffix)
-            checkAffixOne(oneAffix)
-            checkAffixTwo(twoAffix)
+           // Log.d("Affix","${it[0]}=it[0], ${it[1]}=it[1], ${it[2]}=it[2]")
+            checkTyraFortAffix(it[0])
+            checkAffixOne(it[1])
+            checkAffixTwo(it[2])
         }
 
         binding.dungeonsButton.setOnClickListener {
@@ -62,10 +61,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             getString(AffixesSet.Quaking.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_quaking)
             getString(AffixesSet.Spiteful.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_spiteful)
             getString(AffixesSet.Storming.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_storming)
-            getString(AffixesSet.Storming.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_entagling)
-            getString(AffixesSet.Storming.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_afflicted)
-            getString(AffixesSet.Storming.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_incorporeal)
-            getString(AffixesSet.Storming.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_shielding)
+            getString(AffixesSet.Entangling.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_entangling)
+            getString(AffixesSet.Afflicted.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_afflicted)
+            getString(AffixesSet.Incorporeal.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_incorporeal)
+            getString(AffixesSet.Shielding.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_shielding)
         }
     }
 
@@ -81,10 +80,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             getString(AffixesSet.Quaking.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_quaking)
             getString(AffixesSet.Spiteful.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_spiteful)
             getString(AffixesSet.Storming.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_storming)
-            getString(AffixesSet.Storming.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_entagling)
-            getString(AffixesSet.Storming.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_afflicted)
-            getString(AffixesSet.Storming.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_incorporeal)
-            getString(AffixesSet.Storming.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_shielding)
+            getString(AffixesSet.Entangling.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_entangling)
+            getString(AffixesSet.Afflicted.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_afflicted)
+            getString(AffixesSet.Incorporeal.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_incorporeal)
+            getString(AffixesSet.Shielding.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_shielding)
         }
     }
 }
