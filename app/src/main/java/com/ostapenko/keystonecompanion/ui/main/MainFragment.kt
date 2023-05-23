@@ -1,7 +1,8 @@
 package com.ostapenko.keystonecompanion.ui.main
 
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
+
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.ostapenko.keystonecompanion.R
@@ -23,6 +24,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             checkTyraFortAffix(it[0])
             checkAffixOne(it[1])
             checkAffixTwo(it[2])
+        }
+
+        viewModel.rating.observe(viewLifecycleOwner){
+            binding.cutoffsRatingSeason.text = it[0]
+            val color = Color.parseColor(it[1])
+            binding.cutoffsRatingSeason.setTextColor(color)
         }
 
         binding.dungeonsButton.setOnClickListener {

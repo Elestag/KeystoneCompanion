@@ -6,6 +6,7 @@
     <string name="token_price">WoW Token price</string>
     <string name="boss_description">Boss description</string>
     <string name="boss_tips">Boss tips and tricks</string>
+    <string name="_0_1_rating">Rating for 0.1%</string>
 
 
     <!--Dungeons -->
@@ -299,5 +300,6 @@
     <string name="tips_grand_vizier_ertan">Do not touch cyclones.\nPosition yourself so you face the Lurking Tempest.</string>
     <string name="tips_altairus">Position yourself so winds blows you before boss, then you get buff.</string>
     <string name="tips_asaad_caliph_of_zephyrs">You have to always be in Unstable Grounding Field(triangular).\nJump when he about to finish cast Static Cling.</string>
+
 
 </resources>

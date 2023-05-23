@@ -15,11 +15,20 @@ class NetworkViewModel : BaseViewModel() {
     private val _myData = MutableLiveData<List<String>>()
     val myData: LiveData<List<String>> = _myData
 
+    private val _rating = MutableLiveData<List<String>>()
+    val rating: LiveData<List<String>> = _rating
+
     // Launch a coroutine scope to fetch the data
     init {
         viewModelScope.launch(Dispatchers.IO) {
             retrofitFetcher.fetchDataFromRaiderIoApi().collect { data ->
                 _myData.postValue(data)
+            }
+
+            viewModelScope.launch(Dispatchers.IO) {
+                retrofitFetcher.fetchCutoffsRaiderIoApi().collect { data ->
+                    _rating.postValue(data)
+                }
             }
 
 
