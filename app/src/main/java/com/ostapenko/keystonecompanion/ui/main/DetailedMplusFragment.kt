@@ -66,7 +66,7 @@ class DetailedMplusFragment : Fragment(R.layout.item_dungeon_detailed_rv) {
                 SeasonDungeon.HallsOfInfusion.boss3,
                 SeasonDungeon.HallsOfInfusion.boss4
             )
-            "Neltharion\'s" -> dungeonBosses = listOf(
+            "Neltharion\'s Lair" -> dungeonBosses = listOf(
                 SeasonDungeon.NeltarionsLair.boss1,
                 SeasonDungeon.NeltarionsLair.boss2,
                 SeasonDungeon.NeltarionsLair.boss3,
@@ -96,7 +96,7 @@ class DetailedMplusFragment : Fragment(R.layout.item_dungeon_detailed_rv) {
     private fun dungeonDescription(name: String): String {
         var description = ""
         when (name) {
-            "Neltharion\'s" -> description = getString(R.string.description_neltharions_lair)
+            "Neltharion\'s Lair" -> description = getString(R.string.description_neltharions_lair)
             "The Underrot" -> description = getString(R.string.description_the_underrot)
             "Freehold" -> description = getString(R.string.description_freehold)
             "The Vortex Pinnacle" -> description =
@@ -112,7 +112,7 @@ class DetailedMplusFragment : Fragment(R.layout.item_dungeon_detailed_rv) {
 
     private fun setDungeonImage(view: ImageView, name: String) {
         when (name) {
-            "Neltharion\'s" -> view.setImageResource(R.drawable.neltharions_lair_small)
+            "Neltharion\'s Lair" -> view.setImageResource(R.drawable.neltharions_lair_small)
             "The Underrot" -> view.setImageResource(R.drawable.the_underrot_small)
             "Freehold" -> view.setImageResource(R.drawable.freehold_small)
             "The Vortex Pinnacle" -> view.setImageResource(R.drawable.the_vortex_pinnacle_small)

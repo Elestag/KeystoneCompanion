@@ -123,7 +123,7 @@ sealed class SeasonDungeon(val name: String, val imageResId: Int, val mPlus: Boo
     }
 
     object NeltarionsLair :
-        SeasonDungeon("Neltharion\'s", R.drawable.neltharions_lair_small) {
+        SeasonDungeon("Neltharion\'s Lair", R.drawable.neltharions_lair_small) {
         val boss1 = DungeonBossImpl(
             R.string.rokmora,
             R.drawable.creature_rokmora,
