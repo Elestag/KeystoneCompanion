@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.ostapenko.keystonecompanion.ui.main.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_dungeonsFragment"
+            app:destination="@id/dungeonsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_mplusFragment"
+            app:destination="@id/mplusFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dungeonsFragment"
+        android:name="com.ostapenko.keystonecompanion.ui.main.DungeonsFragment"
+        android:label="DungeonsFragment" >
+        <action
+            android:id="@+id/action_dungeonsFragment_to_detailedDungeonFragment"
+            app:destination="@id/detailedDungeonFragment" />
+        <action
+            android:id="@+id/action_dungeonsFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mplusFragment"
+        android:name="com.ostapenko.keystonecompanion.ui.main.MplusFragment"
+        android:label="MplusFragment" >
+        <action
+            android:id="@+id/action_mplusFragment_to_detailedMplusFragment"
+            app:destination="@id/detailedMplusFragment" />
+        <action
+            android:id="@+id/action_mplusFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedDungeonFragment"
+        android:name="com.ostapenko.keystonecompanion.ui.main.DetailedDungeonFragment"
+        android:label="DetailedDungeonFragment" >
+        <action
+            android:id="@+id/action_detailedDungeonFragment_to_dungeonsFragment"
+            app:destination="@id/dungeonsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedMplusFragment"
+        android:name="com.ostapenko.keystonecompanion.ui.main.DetailedMplusFragment"
+        android:label="DetailedMplusFragment" >
+        <action
+            android:id="@+id/action_detailedMplusFragment_to_mplusFragment"
+            app:destination="@id/mplusFragment" />
+    </fragment>
+</navigation>
