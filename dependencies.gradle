@@ -5,7 +5,8 @@ ext.versions = [
         coroutines      : '1.6.4',
         glide           : '4.14.2',
         dagger          : '2.44.2',
-        expandable      : '1.0.7'
+        expandable      : '1.0.7',
+        navigation      : '2.7.4',
 ]
 
 
@@ -43,5 +44,10 @@ ext.libs = [
 
         //ExpandableLayout
         expandableLayout           : "com.github.skydoves:expandablelayout:$versions.expandable",
+
+        //Navigation
+        navigationFragment         : "androidx.navigation:navigation-fragment-ktx:$versions.navigation",
+        navigationKtx              : "androidx.navigation:navigation-ui-ktx:$versions.navigation",
+        navigationCompose          : "androidx.navigation:navigation-compose:$versions.navigation",
 
 ]

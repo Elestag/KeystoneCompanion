@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace 'com.ostapenko.keystonecompanion'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.ostapenko.keystonecompanion"
@@ -34,12 +34,17 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
-        viewBinding = true
-        dataBinding = true
+        viewBinding true
+        dataBinding true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.0"
     }
 }
 
 dependencies {
+
     implementation libs.coroutines
     implementation libs.coroutinesAndroid
     implementation libs.retrofit
@@ -51,6 +56,11 @@ dependencies {
     implementation libs.constraintLayout
     implementation libs.material
     implementation libs.fragment
+
+    // navigation
+    implementation libs.navigationFragment
+    implementation libs.navigationKtx
+    implementation libs.navigationCompose
 
     implementation libs.lifecycleViewModel
     implementation libs.lifecycleLiveData
@@ -67,11 +77,22 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
-   // implementation libs.glide
-   // kapt libs.glideCompiler
+    // implementation libs.glide
+    // kapt libs.glideCompiler
 
-   // implementation libs.dagger
-   // kapt libs.daggerCompiler
+    // implementation libs.dagger
+    // kapt libs.daggerCompiler
+
+    def composeBom = platform('androidx.compose:compose-bom:2023.06.00')
+    implementation(composeBom)
+    implementation "androidx.compose.runtime:runtime"
+    implementation "androidx.compose.ui:ui"
+    implementation "androidx.compose.foundation:foundation"
+    implementation "androidx.compose.foundation:foundation-layout"
+    implementation "androidx.compose.material:material"
+    implementation "androidx.compose.runtime:runtime-livedata"
+    implementation "androidx.compose.ui:ui-tooling-preview"
+    debugImplementation "androidx.compose.ui:ui-tooling"
 
 
     testImplementation 'junit:junit:4.13.2'
