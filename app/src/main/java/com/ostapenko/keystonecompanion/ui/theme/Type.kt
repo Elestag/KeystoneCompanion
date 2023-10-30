@@ -49,7 +49,7 @@ val typography = Typography(
         letterSpacing = (1.15).sp
     ),
     h3 = TextStyle(
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.Light,
         fontSize = 14.sp,
         letterSpacing = 0.sp
     ),
