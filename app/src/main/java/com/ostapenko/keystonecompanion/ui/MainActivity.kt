@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ostapenko.keystonecompanion.R
 import com.ostapenko.keystonecompanion.databinding.ActivityMainBinding
+import com.ostapenko.keystonecompanion.ui.main.DungeonsFragment
 import com.ostapenko.keystonecompanion.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .add(R.id.container, MainFragment())
+                .add(R.id.container, DungeonsFragment())
                 .commitAllowingStateLoss()
         }
     }

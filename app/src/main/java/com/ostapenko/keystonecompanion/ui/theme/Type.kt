@@ -44,7 +44,8 @@ val typography = Typography(
     ),
     h2 = TextStyle(
         fontFamily = fontFamilyKulim,
-        fontSize = 15.sp,
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp,
         letterSpacing = (1.15).sp
     ),
     h3 = TextStyle(
