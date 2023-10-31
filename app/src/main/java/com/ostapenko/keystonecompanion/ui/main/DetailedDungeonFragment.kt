@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -12,7 +11,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Surface
@@ -32,15 +30,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.SnapHelper
 import com.ostapenko.keystonecompanion.R
-import com.ostapenko.keystonecompanion.databinding.ItemDungeonDetailedRvBinding
 import com.ostapenko.keystonecompanion.model.dungeons.AddonDungeon
-import com.ostapenko.keystonecompanion.model.dungeons.boss.DungeonBoss
 import com.ostapenko.keystonecompanion.model.dungeons.boss.DungeonBossImpl
-import com.ostapenko.keystonecompanion.ui.base.viewBinding
-import com.ostapenko.keystonecompanion.ui.main.adapters.DetailedItemAdapter
 import com.ostapenko.keystonecompanion.ui.theme.MyKeystoneTheme
 import com.ostapenko.keystonecompanion.ui.theme.primaryBlack
 import com.ostapenko.keystonecompanion.ui.theme.primaryWhite
@@ -63,7 +55,7 @@ class DetailedDungeonFragment : Fragment() {
             setContent {
                 MyKeystoneTheme {
                     Surface {
-                        DungeonBossDetailed(dungeonName ="Halls of Infusion")
+                        DungeonBossDetailed("Algeth\'ar Academy")
                     }
                 }
             }
@@ -93,37 +85,38 @@ class DetailedDungeonFragment : Fragment() {
     }
 
 
-    /* private fun dungeonDescription(name: String): String {
-         var description = ""
-         when (name) {
-             "The Azure Vault" -> description = getString(R.string.description_azure_vault)
-             "Algeth\'ar Academy" -> description = getString(R.string.description_algethar_academy)
-             "Ruby Life Pools" -> description = getString(R.string.description_ruby_life_pools)
-             "The Nokhud Offensive" -> description =
-                 getString(R.string.description_the_nokhud_offensive)
+}
 
-             "Brackenhide Hollow" -> description = getString(R.string.description_brackenhide_hollow)
-             "Uldaman: Legacy of Tyr" -> description =
-                 getString(R.string.description_uldaman_legacy_of_tyr)
 
-             "Neltharus" -> description = getString(R.string.description_neltharus)
-             "Halls of Infusion" -> description = getString(R.string.description_halls_of_infusion)
-         }
-         return description
-     }
+private fun setDungeonDescription(name: String): Int {
+    var description = R.string.description_azure_vault
+    when (name) {
+        "The Azure Vault" -> description = R.string.description_azure_vault
+        "Algeth\'ar Academy" -> description = R.string.description_algethar_academy
+        "Ruby Life Pools" -> R.string.description_ruby_life_pools
+        "The Nokhud Offensive" -> description = R.string.description_the_nokhud_offensive
+        "Brackenhide Hollow" -> description = R.string.description_brackenhide_hollow
+        "Uldaman: Legacy of Tyr" -> description = R.string.description_uldaman_legacy_of_tyr
+        "Neltharus" -> description = R.string.description_neltharus
+        "Halls of Infusion" -> description = R.string.description_halls_of_infusion
+    }
+    return description
+}
 
-     private fun setDungeonImage(view: ImageView, name: String) {
-         when (name) {
-             "The Azure Vault" -> view.setImageResource(R.drawable.the_azure_vault_small)
-             "Algeth\'ar Academy" -> view.setImageResource(R.drawable.algethar_academy_small)
-             "Ruby Life Pools" -> view.setImageResource(R.drawable.ruby_life_pools_small)
-             "The Nokhud Offensive" -> view.setImageResource(R.drawable.the_nokhud_offensive_small)
-             "Brackenhide Hollow" -> view.setImageResource(R.drawable.brackenhide_hollow_small)
-             "Uldaman: Legacy of Tyr" -> view.setImageResource(R.drawable.uldaman_legacy_of_tyr_small)
-             "Neltharus" -> view.setImageResource(R.drawable.neltharus_small)
-             "Halls of Infusion" -> view.setImageResource(R.drawable.halls_of_infusion_small)
-         }
-     }*/
+
+private fun setDungeonImage(name: String): Int {
+    var image = R.drawable.the_azure_vault_small
+    when (name) {
+        "The Azure Vault" -> image = R.drawable.the_azure_vault_small
+        "Algeth\'ar Academy" -> image = R.drawable.algethar_academy_small
+        "Ruby Life Pools" -> image = R.drawable.ruby_life_pools_small
+        "The Nokhud Offensive" -> image = R.drawable.the_nokhud_offensive_small
+        "Brackenhide Hollow" -> image = R.drawable.brackenhide_hollow_small
+        "Uldaman: Legacy of Tyr" -> image = R.drawable.uldaman_legacy_of_tyr_small
+        "Neltharus" -> image = R.drawable.neltharus_small
+        "Halls of Infusion" -> image = R.drawable.halls_of_infusion_small
+    }
+    return image
 }
 
 fun showDetailedDungeon(name: String): List<DungeonBossImpl> {
@@ -194,6 +187,13 @@ fun DungeonBossDetailed(dungeonName: String) {
 
     val bossList = showDetailedDungeon(dungeonName)
     LazyColumn {
+        item {
+            DungeonElement(
+                dungeonName = setDungeonDescription(name = dungeonName),
+                dungeonImage = setDungeonImage(name = dungeonName)
+            )
+        }
+
         itemsIndexed(bossList) { _, boss ->
             DungeonBossElement(
                 bossNameId = boss.nameResId,
