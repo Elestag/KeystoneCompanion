@@ -221,7 +221,7 @@ fun DungeonBossElement(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .background(color = primaryBlack)
-            .padding(top = 10.dp, start = 16.dp, end = 16.dp)
+         .padding(top = 10.dp, start = 16.dp, end = 16.dp)
     ) {
         Text(
             text = stringResource(id = bossNameId),
@@ -237,7 +237,7 @@ fun DungeonBossElement(
                 .padding(top = 10.dp)
 
         )
-        Column {
+        Column(modifier = modifier) {
             Text(
                 text = stringResource(id = bossDescriptionId),
                 style = typography.h3,
@@ -252,7 +252,8 @@ fun DungeonBossElement(
                 )
             }
         }
-        Column {
+        //TODO this column has extra padding, idk why, fix later
+        Column(modifier = modifier) {
             Text(
                 text = stringResource(id = bossTipsId),
                 style = typography.h3,

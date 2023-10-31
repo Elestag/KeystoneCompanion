@@ -31,9 +31,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.fragment.findNavController
 import com.ostapenko.keystonecompanion.R
 import com.ostapenko.keystonecompanion.ui.theme.MyKeystoneTheme
+import com.ostapenko.keystonecompanion.ui.theme.typography
 import com.ostapenko.keystonecompanion.viewmodel.main.NetworkViewModel
 
 
@@ -48,7 +52,8 @@ class MainFragment : Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                CompanionApp()
+                val navController = findNavController()
+                CompanionApp("4333", navController = navController)
             }
         }
     }
@@ -140,7 +145,11 @@ fun CompanionTopAppBar() {
 }
 
 @Composable
-fun CutoffsAndButtons(modifier: Modifier = Modifier, cutoffs: String) {
+fun CutoffsAndButtons(
+    modifier: Modifier = Modifier,
+    cutoffs: String,
+    navHostController: NavController
+) {
     MyKeystoneTheme {
         Surface {
             Column(
@@ -148,13 +157,21 @@ fun CutoffsAndButtons(modifier: Modifier = Modifier, cutoffs: String) {
                     .background(Color.Black)
                     .fillMaxSize()
                     .padding(16.dp),
-
-                ) {
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
                 Spacer(modifier = modifier.height(160.dp))
-                Text(text = "cutoffs rating", color = Color.White) //todo font size 24sp + style
+                Text(
+                    text = "Cutoffs rating",
+                    color = Color.White,
+                    style = typography.h1
+                )
                 Spacer(modifier = Modifier.height(10.dp))
-                Text(text = "$cutoffs", color = Color.White)
+                Text(
+                    text = "$cutoffs",
+                    color = Color.White,
+                    style = typography.h1
+                )
                 Column(
                     modifier = modifier
                         .width(200.dp)
@@ -163,22 +180,19 @@ fun CutoffsAndButtons(modifier: Modifier = Modifier, cutoffs: String) {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Button(onClick = { /*TODO*/ }) //todo set buttons clicks
+                    Button(onClick = {
+                        navHostController.navigate(R.id.action_mainFragment_to_dungeonsFragment)
+                    })
+                    //todo set buttons clicks
                     {
                         Text(
                             text = "Dungeons",
                             modifier = modifier.width(150.dp),
+                            style = typography.button,
                             textAlign = TextAlign.Center
                         )
                     }
                     Spacer(modifier = modifier.height(10.dp))
-                    Button(onClick = { /*TODO*/ }) {
-                        Text(
-                            text = "Mythic+",
-                            modifier = modifier.width(150.dp),
-                            textAlign = TextAlign.Center
-                        )
-                    }
                 }
                 Spacer(modifier = modifier.height(20.dp))
                 WeeklyModifiers()
@@ -197,7 +211,7 @@ fun WeeklyModifiers(modifier: Modifier = Modifier) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(text = "Weekly m+ modifiers", color = Color.White)
+                Text(text = "Weekly M+ modifiers", color = Color.White, style = typography.h1)
                 Spacer(modifier = modifier.height(16.dp))
                 Row(
                     modifier = modifier
@@ -227,13 +241,14 @@ fun WeeklyModifiers(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun CompanionApp() {
+fun CompanionApp(cutoffs: String, navController: NavController) {
+
     MyKeystoneTheme {
-        val navController = rememberNavController()
         Scaffold(topBar = { CompanionTopAppBar() }) { contPadding ->
             CutoffsAndButtons(
                 modifier = Modifier.padding(contPadding),
-                cutoffs = "4339"
+                cutoffs = cutoffs,
+                navHostController = navController
             )
         }
     }

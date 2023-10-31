@@ -39,7 +39,7 @@ val typography = Typography(
     h1 = TextStyle(
         fontFamily = fontFamilyKulim,
         fontWeight = FontWeight.Light,
-        fontSize = 28.sp,
+        fontSize = 24.sp,
         letterSpacing = (1.15).sp
     ),
     h2 = TextStyle(
