@@ -8,13 +8,11 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredHeight
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Surface
@@ -26,17 +24,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
-
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.ostapenko.keystonecompanion.R
-import com.ostapenko.keystonecompanion.databinding.ItemDungeonsRvBinding
 import com.ostapenko.keystonecompanion.model.dungeons.AddonDungeon
-import com.ostapenko.keystonecompanion.model.dungeons.DungeonsItemRV
-import com.ostapenko.keystonecompanion.ui.base.viewBinding
-import com.ostapenko.keystonecompanion.ui.main.adapters.DungeonsItemAdapter
 import com.ostapenko.keystonecompanion.ui.theme.MyKeystoneTheme
 import com.ostapenko.keystonecompanion.ui.theme.primaryBlack
 import com.ostapenko.keystonecompanion.ui.theme.primaryWhite
@@ -64,34 +57,37 @@ class DungeonsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                DungeonsListColumn(dungeons = dungeonList)
+                val navController = findNavController()
+                DungeonsListColumn(dungeons = dungeonList, navController = navController)
             }
         }
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-      /*  binding.dungeonsRecyclerView.apply {
-            adapter = myAdapter
-        }*/
+        /*  binding.dungeonsRecyclerView.apply {
+              adapter = myAdapter
+          }*/
 
 
     }
 }
 
 @Composable
-fun DungeonsListColumn(dungeons: List<AddonDungeon>) {
+fun DungeonsListColumn(dungeons: List<AddonDungeon>, navController: NavController) {
 
     MyKeystoneTheme {
         Surface {
             LazyColumn {
-                itemsIndexed(dungeons) { index, dungeon ->
+                itemsIndexed(dungeons) { _, dungeon ->
                     DungeonElement(
                         dungeonName = dungeon.nameResId,
-                        dungeonImage = dungeon.imageResId
+                        dungeonImage = dungeon.imageResId,
+                        navController = navController
                     )
                 }
             }
@@ -103,6 +99,8 @@ fun DungeonsListColumn(dungeons: List<AddonDungeon>) {
 fun DungeonElement(
     @StringRes dungeonName: Int,
     @DrawableRes dungeonImage: Int,
+    navController: NavController,
+    isClickable: Boolean = true,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -122,24 +120,29 @@ fun DungeonElement(
             contentScale = ContentScale.Crop,
             modifier = modifier
                 .height(300.dp)
+                .fillMaxWidth()
                 .padding(top = 10.dp)
-
-        )
+                .clickable {
+                    if (isClickable) {
+                        navController.navigate(R.id.action_dungeonsFragment_to_detailedDungeonFragment)
+                    }
+                })
     }
 }
 
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
 fun DungeonElementPreview() {
     MyKeystoneTheme {
         DungeonElement(
             dungeonName = AddonDungeon.AlgetharAcademy.nameResId,
-            dungeonImage = AddonDungeon.AlgetharAcademy.imageResId
+            dungeonImage = AddonDungeon.AlgetharAcademy.imageResId,
+            navController =
         )
     }
-}
+}*/
 
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
 fun DungeonsListColumnPreview() {
 
@@ -157,5 +160,5 @@ fun DungeonsListColumnPreview() {
     MyKeystoneTheme {
         DungeonsListColumn(dungeons = dungeonList)
     }
-}
+}*/
 

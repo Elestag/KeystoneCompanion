@@ -27,9 +27,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.ostapenko.keystonecompanion.R
 import com.ostapenko.keystonecompanion.model.dungeons.AddonDungeon
 import com.ostapenko.keystonecompanion.model.dungeons.boss.DungeonBossImpl
@@ -53,9 +54,10 @@ class DetailedDungeonFragment : Fragment() {
 
         return ComposeView(requireContext()).apply {
             setContent {
+                val navController = findNavController()
                 MyKeystoneTheme {
                     Surface {
-                        DungeonBossDetailed("Algeth\'ar Academy")
+                        DungeonBossDetailed("Algeth\'ar Academy", navController = navController)
                     }
                 }
             }
@@ -183,14 +185,16 @@ fun showDetailedDungeon(name: String): List<DungeonBossImpl> {
 
 
 @Composable
-fun DungeonBossDetailed(dungeonName: String) {
+fun DungeonBossDetailed(dungeonName: String, navController: NavController) {
 
     val bossList = showDetailedDungeon(dungeonName)
     LazyColumn {
         item {
             DungeonElement(
                 dungeonName = setDungeonDescription(name = dungeonName),
-                dungeonImage = setDungeonImage(name = dungeonName)
+                dungeonImage = setDungeonImage(name = dungeonName),
+                navController = navController,
+                isClickable = false
             )
         }
 
@@ -221,7 +225,7 @@ fun DungeonBossElement(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .background(color = primaryBlack)
-         .padding(top = 10.dp, start = 16.dp, end = 16.dp)
+            .padding(top = 10.dp, start = 16.dp, end = 16.dp)
     ) {
         Text(
             text = stringResource(id = bossNameId),
@@ -272,10 +276,11 @@ fun DungeonBossElement(
     }
 }
 
+/*
 @Preview(showBackground = true)
 @Composable
 fun ShowDungeonDetailedPreview() {
     MyKeystoneTheme {
         DungeonBossDetailed(dungeonName = "Algeth\'ar Academy")
     }
-}
+}*/
