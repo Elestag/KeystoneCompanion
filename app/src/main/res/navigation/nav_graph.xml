@@ -27,6 +27,10 @@
         android:id="@+id/detailedDungeonFragment"
         android:name="com.ostapenko.keystonecompanion.ui.main.DetailedDungeonFragment"
         android:label="DetailedDungeonFragment" >
+        <argument
+            android:name="dungNameArg"
+            app:argType="string"
+            android:defaultValue="q" />
         <action
             android:id="@+id/action_detailedDungeonFragment_to_dungeonsFragment"
             app:destination="@id/dungeonsFragment" />

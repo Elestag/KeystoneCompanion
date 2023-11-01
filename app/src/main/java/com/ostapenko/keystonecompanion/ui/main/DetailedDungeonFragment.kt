@@ -29,8 +29,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavArgs
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.ostapenko.keystonecompanion.R
 import com.ostapenko.keystonecompanion.model.dungeons.AddonDungeon
 import com.ostapenko.keystonecompanion.model.dungeons.boss.DungeonBossImpl
@@ -51,13 +53,15 @@ class DetailedDungeonFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         //TODO get args dungeonName, replace placeholder
+        val args: DetailedDungeonFragmentArgs by navArgs()
+        val dungeonName = args.dungNameArg
 
         return ComposeView(requireContext()).apply {
             setContent {
                 val navController = findNavController()
                 MyKeystoneTheme {
                     Surface {
-                        DungeonBossDetailed("Algeth\'ar Academy", navController = navController)
+                        DungeonBossDetailed(dungeonName, navController = navController)
                     }
                 }
             }

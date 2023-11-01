@@ -25,6 +25,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -97,12 +98,13 @@ fun DungeonsListColumn(dungeons: List<AddonDungeon>, navController: NavControlle
 
 @Composable
 fun DungeonElement(
+    modifier: Modifier = Modifier,
     @StringRes dungeonName: Int,
     @DrawableRes dungeonImage: Int,
     navController: NavController,
-    isClickable: Boolean = true,
-    modifier: Modifier = Modifier
+    isClickable: Boolean = true
 ) {
+    val dungeonNameString = stringResource(id = dungeonName)
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
@@ -112,7 +114,8 @@ fun DungeonElement(
         Text(
             text = stringResource(id = dungeonName),
             style = typography.h2,
-            color = primaryWhite
+            color = primaryWhite,
+            modifier = modifier.padding(10.dp)
         )
         Image(
             painterResource(id = dungeonImage),
@@ -124,7 +127,12 @@ fun DungeonElement(
                 .padding(top = 10.dp)
                 .clickable {
                     if (isClickable) {
-                        navController.navigate(R.id.action_dungeonsFragment_to_detailedDungeonFragment)
+                        val bundle = bundleOf("dungNameArg" to dungeonNameString)
+                        navController.navigate(
+                            R.id.action_dungeonsFragment_to_detailedDungeonFragment,
+                            bundle
+                        )
+
                     }
                 })
     }
