@@ -52,7 +52,7 @@ class DetailedDungeonFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        //TODO get args dungeonName, replace placeholder
+
         val args: DetailedDungeonFragmentArgs by navArgs()
         val dungeonName = args.dungNameArg
 

@@ -11,43 +11,46 @@ ext.versions = [
 
 
 ext.libs = [
-        coroutines                 : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines",
-        coroutinesAndroid          : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
+        coroutines                       : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines",
+        coroutinesAndroid                : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
 
-        appcompat                  : "androidx.appcompat:appcompat:1.5.1",
-        coreKtx                    : "androidx.core:core-ktx:1.7.0",
-        constraintLayout           : "androidx.constraintlayout:constraintlayout:2.1.4",
-        material                   : "com.google.android.material:material:1.7.0",
-        fragment                   : "androidx.fragment:fragment-ktx:1.5.4",
+        appcompat                        : "androidx.appcompat:appcompat:1.5.1",
+        coreKtx                          : "androidx.core:core-ktx:1.7.0",
+        constraintLayout                 : "androidx.constraintlayout:constraintlayout:2.1.4",
+        material                         : "com.google.android.material:material:1.7.0",
+        fragment                         : "androidx.fragment:fragment-ktx:1.5.4",
 
         //Lifecycle
-        lifecycleViewModel         : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle",
-        lifecycleLiveData          : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle",
-        lifecycleCompiler          : "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle",
+        lifecycleViewModel               : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle",
+        lifecycleLiveData                : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle",
+        lifecycleCompiler                : "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle",
+        lifecycleViewModelCompose        : "androidx.lifecycle:lifecycle-viewmodel-compose:$versions.lifecycle",
+        lifecycleViewModelRuntime        : "androidx.lifecycle:lifecycle-runtime-compose:$versions.lifecycle",
+        lifecycleViewModelRuntimeLiveData: "androidx.compose.runtime:runtime-livedata:1.5.4",
 
         //Adapter
-        adapterDelegates           : "com.hannesdorfmann:adapterdelegates4-kotlin-dsl:$versions.adapterDelegates",
-        adapterDelegatesViewBinding: "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:$versions.adapterDelegates",
+        adapterDelegates                 : "com.hannesdorfmann:adapterdelegates4-kotlin-dsl:$versions.adapterDelegates",
+        adapterDelegatesViewBinding      : "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:$versions.adapterDelegates",
 
         //Network
-        retrofit                   : "com.squareup.retrofit2:retrofit:$versions.retrofit",
-        retrofitGsonConverter      : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
-        okHttpLoggingInterceptor   : "com.squareup.okhttp3:logging-interceptor:4.10.0",
+        retrofit                         : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+        retrofitGsonConverter            : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+        okHttpLoggingInterceptor         : "com.squareup.okhttp3:logging-interceptor:4.10.0",
 
         //Glide
-        glide                      : "com.github.bumptech.glide:glide:$versions.glide",
-        glideCompiler              : "com.github.bumptech.glide:compiler:$versions.glide",
+        glide                            : "com.github.bumptech.glide:glide:$versions.glide",
+        glideCompiler                    : "com.github.bumptech.glide:compiler:$versions.glide",
 
         //Dagger
-        dagger                     : "com.google.dagger:dagger:$versions.dagger",
-        daggerCompiler             : "com.google.dagger:dagger-compiler:$versions.dagger",
+        dagger                           : "com.google.dagger:dagger:$versions.dagger",
+        daggerCompiler                   : "com.google.dagger:dagger-compiler:$versions.dagger",
 
         //ExpandableLayout
-        expandableLayout           : "com.github.skydoves:expandablelayout:$versions.expandable",
+        expandableLayout                 : "com.github.skydoves:expandablelayout:$versions.expandable",
 
         //Navigation
-        navigationFragment         : "androidx.navigation:navigation-fragment-ktx:$versions.navigation",
-        navigationKtx              : "androidx.navigation:navigation-ui-ktx:$versions.navigation",
-        navigationCompose          : "androidx.navigation:navigation-compose:$versions.navigation",
+        navigationFragment               : "androidx.navigation:navigation-fragment-ktx:$versions.navigation",
+        navigationKtx                    : "androidx.navigation:navigation-ui-ktx:$versions.navigation",
+        navigationCompose                : "androidx.navigation:navigation-compose:$versions.navigation",
 
 ]

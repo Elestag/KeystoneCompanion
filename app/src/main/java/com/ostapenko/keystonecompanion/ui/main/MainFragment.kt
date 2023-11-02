@@ -2,6 +2,7 @@ package com.ostapenko.keystonecompanion.ui.main
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,19 +24,23 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.findNavController
 import com.ostapenko.keystonecompanion.R
+import com.ostapenko.keystonecompanion.model.dungeons.AffixesSet
 import com.ostapenko.keystonecompanion.ui.theme.MyKeystoneTheme
 import com.ostapenko.keystonecompanion.ui.theme.typography
 import com.ostapenko.keystonecompanion.viewmodel.main.NetworkViewModel
@@ -43,7 +48,7 @@ import com.ostapenko.keystonecompanion.viewmodel.main.NetworkViewModel
 
 class MainFragment : Fragment() {
 
-    private val viewModel = NetworkViewModel()
+    private val viewModel: NetworkViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,7 +58,7 @@ class MainFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 val navController = findNavController()
-                CompanionApp("4333", navController = navController)
+                CompanionApp(viewModel, navController = navController)
             }
         }
     }
@@ -61,80 +66,9 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*  viewModel.myData.observe(viewLifecycleOwner) {
-               Log.d("Affix","${it[0]}=it[0], ${it[1]}=it[1], ${it[2]}=it[2]")
-                checkTyraFortAffix(it[0])
-                checkAffixOne(it[1])
-                checkAffixTwo(it[2])
-          }*/
-
-        /* viewModel.rating.observe(viewLifecycleOwner){
-             binding.cutoffsRatingSeason.text = it[0]
-             val color = Color.parseColor(it[1])
-             binding.cutoffsRatingSeason.setTextColor(color)
-         }
-
-         binding.dungeonsButton.setOnClickListener {
-             val transaction = activity?.supportFragmentManager?.beginTransaction()
-             transaction?.replace(R.id.container, DungeonsFragment())
-                 ?.addToBackStack("MainFragment")
-                 ?.commit()
-         }
-
-         binding.mythicButton.setOnClickListener {
-             val transaction = activity?.supportFragmentManager?.beginTransaction()
-             transaction?.replace(R.id.container, MplusFragment())
-                 ?.addToBackStack("MainFragment")
-                 ?.commit()
-         }*/
-
     }
 
-    /*private fun checkTyraFortAffix(name: String) {
-        if (name == getString(AffixesSet.Tyrannical.nameResId)) {
-            binding.tyraFortAffix.setImageResource(R.drawable.affix_tyrannical)
-        } else {
-            binding.tyraFortAffix.setImageResource(R.drawable.affix_fortified)
-        }
-    }
 
-    private fun checkAffixOne(name: String) {
-        when (name) {
-            getString(AffixesSet.Volcanic.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_volcanic)
-            getString(AffixesSet.Raging.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_raging)
-            getString(AffixesSet.Bolstering.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_bolstering)
-            getString(AffixesSet.Sanguine.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_sanguine)
-            getString(AffixesSet.Bursting.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_bursting)
-            getString(AffixesSet.Grievous.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_grievous)
-            getString(AffixesSet.Explosive.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_explosive)
-            getString(AffixesSet.Quaking.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_quaking)
-            getString(AffixesSet.Spiteful.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_spiteful)
-            getString(AffixesSet.Storming.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_storming)
-            getString(AffixesSet.Entangling.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_entangling)
-            getString(AffixesSet.Afflicted.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_afflicted)
-            getString(AffixesSet.Incorporeal.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_incorporeal)
-            getString(AffixesSet.Shielding.nameResId) -> binding.affixOne.setImageResource(R.drawable.affix_shielding)
-        }
-    }
-
-    private fun checkAffixTwo(name: String) {
-        when (name) {
-            getString(AffixesSet.Volcanic.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_volcanic)
-            getString(AffixesSet.Raging.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_raging)
-            getString(AffixesSet.Bolstering.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_bolstering)
-            getString(AffixesSet.Sanguine.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_sanguine)
-            getString(AffixesSet.Bursting.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_bursting)
-            getString(AffixesSet.Grievous.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_grievous)
-            getString(AffixesSet.Explosive.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_explosive)
-            getString(AffixesSet.Quaking.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_quaking)
-            getString(AffixesSet.Spiteful.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_spiteful)
-            getString(AffixesSet.Storming.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_storming)
-            getString(AffixesSet.Entangling.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_entangling)
-            getString(AffixesSet.Afflicted.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_afflicted)
-            getString(AffixesSet.Incorporeal.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_incorporeal)
-            getString(AffixesSet.Shielding.nameResId) -> binding.affixTwo.setImageResource(R.drawable.affix_shielding)
-        }
-    }*/
 }
 
 
@@ -147,62 +81,87 @@ fun CompanionTopAppBar() {
 @Composable
 fun CutoffsAndButtons(
     modifier: Modifier = Modifier,
-    cutoffs: String,
+    viewModel: NetworkViewModel,
     navHostController: NavController
 ) {
-    MyKeystoneTheme {
-        Surface {
-            Column(
-                modifier = modifier
-                    .background(Color.Black)
-                    .fillMaxSize()
-                    .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-
-                Spacer(modifier = modifier.height(160.dp))
-                Text(
-                    text = "Cutoffs rating",
-                    color = Color.White,
-                    style = typography.h1
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-                Text(
-                    text = "$cutoffs",
-                    color = Color.White,
-                    style = typography.h1
-                )
+    val cutoffs by viewModel.rating.collectAsState()
+    if (cutoffs.isNotEmpty()) {
+        Log.d(
+            "cutoffs",
+            "${cutoffs.size} = cutoffs.size, ${cutoffs[0]} = cutoffs[0], ${cutoffs[1]} = cutoffs[1]"
+        )
+        MyKeystoneTheme {
+            Surface {
                 Column(
                     modifier = modifier
-                        .width(200.dp)
-                        .padding(2.dp)
-                        .fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                        .background(Color.Black)
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Button(onClick = {
-                        navHostController.navigate(R.id.action_mainFragment_to_dungeonsFragment)
-                    })
-                    //todo set buttons clicks
-                    {
-                        Text(
-                            text = "Dungeons",
-                            modifier = modifier.width(150.dp),
-                            style = typography.button,
-                            textAlign = TextAlign.Center
-                        )
+
+                    Spacer(modifier = modifier.height(160.dp))
+                    Text(
+                        text = "Cutoffs rating",
+                        color = Color.White,
+                        style = typography.h1
+                    )
+                    Spacer(modifier = Modifier.height(10.dp))
+                    val ratingColor = Color(android.graphics.Color.parseColor(cutoffs[1]))
+                    Text(
+                        text = cutoffs[0].substring(0, 4),
+                        color = ratingColor,
+                        style = typography.h1
+                    )
+                    Column(
+                        modifier = modifier
+                            .width(200.dp)
+                            .padding(2.dp)
+                            .fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Button(onClick = {
+                            navHostController.navigate(R.id.action_mainFragment_to_dungeonsFragment)
+                        })
+                        {
+                            Text(
+                                text = "Dungeons",
+                                modifier = modifier.width(150.dp),
+                                style = typography.button,
+                                textAlign = TextAlign.Center
+                            )
+                        }
+                        Spacer(modifier = modifier.height(10.dp))
                     }
-                    Spacer(modifier = modifier.height(10.dp))
+                    Spacer(modifier = modifier.height(20.dp))
+                    WeeklyModifiers(modifier, viewModel)
                 }
-                Spacer(modifier = modifier.height(20.dp))
-                WeeklyModifiers()
             }
         }
     }
 }
 
+/*private fun checkTyraFortAffix(name: String) {
+      if (name == getString(AffixesSet.Tyrannical.nameResId)) {
+          binding.tyraFortAffix.setImageResource(R.drawable.affix_tyrannical)
+      } else {
+          binding.tyraFortAffix.setImageResource(R.drawable.affix_fortified)
+      }
+  }*/
+
 @Composable
-fun WeeklyModifiers(modifier: Modifier = Modifier) {
+fun WeeklyModifiers(modifier: Modifier = Modifier, viewModel: NetworkViewModel) {
+    val affixes by viewModel.affixes.collectAsState()
+    Log.d("affixes", "${affixes[0]}=it[0], ${affixes[1]}=it[1], ${affixes[2]}=it[2]")
+    val tyraForAffix = if (affixes[0] == stringResource(id = AffixesSet.Tyrannical.nameResId)) {
+        painterResource(id = AffixesSet.Tyrannical.imageResId)
+    } else {
+        painterResource(id = AffixesSet.Fortified.imageResId)
+    }
+    val affixOne = checkAffix(name = affixes[1])
+    val affixTwo = checkAffix(name = affixes[2])
+
     MyKeystoneTheme {
         Surface {
             Column(
@@ -220,17 +179,17 @@ fun WeeklyModifiers(modifier: Modifier = Modifier) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.affix_tyrannical),
+                        painter = tyraForAffix,
                         contentDescription = "affix tyrannical",
                         modifier.size(56.dp)
                     )
                     Image(
-                        painter = painterResource(id = R.drawable.affix_afflicted),
+                        painter = affixOne,
                         contentDescription = "affix one",
                         modifier.size(56.dp)
                     )
                     Image(
-                        painter = painterResource(id = R.drawable.affix_bolstering),
+                        painter = affixTwo,
                         contentDescription = "affix two",
                         modifier.size(56.dp)
                     )
@@ -241,17 +200,65 @@ fun WeeklyModifiers(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun CompanionApp(cutoffs: String, navController: NavController) {
+fun CompanionApp(viewModel: NetworkViewModel, navController: NavController) {
 
     MyKeystoneTheme {
         Scaffold(topBar = { CompanionTopAppBar() }) { contPadding ->
             CutoffsAndButtons(
                 modifier = Modifier.padding(contPadding),
-                cutoffs = cutoffs,
+                viewModel = viewModel,
                 navHostController = navController
             )
         }
     }
 }
 
+@Composable
+fun checkAffix(name: String): Painter {
+    var affix = painterResource(id = R.drawable.affix_volcanic)
+    when (name) {
+        stringResource(AffixesSet.Volcanic.nameResId) -> affix =
+            painterResource(R.drawable.affix_volcanic)
+
+        stringResource(AffixesSet.Raging.nameResId) -> affix =
+            painterResource(R.drawable.affix_raging)
+
+        stringResource(AffixesSet.Bolstering.nameResId) -> affix =
+            painterResource(R.drawable.affix_bolstering)
+
+        stringResource(AffixesSet.Sanguine.nameResId) -> affix =
+            painterResource(R.drawable.affix_sanguine)
+
+        stringResource(AffixesSet.Bursting.nameResId) -> affix =
+            painterResource(R.drawable.affix_bursting)
+
+        stringResource(AffixesSet.Grievous.nameResId) -> affix =
+            painterResource(R.drawable.affix_grievous)
+
+        stringResource(AffixesSet.Explosive.nameResId) -> affix =
+            painterResource(R.drawable.affix_explosive)
+
+        stringResource(AffixesSet.Quaking.nameResId) -> affix =
+            painterResource(R.drawable.affix_quaking)
+
+        stringResource(AffixesSet.Spiteful.nameResId) -> affix =
+            painterResource(R.drawable.affix_spiteful)
+
+        stringResource(AffixesSet.Storming.nameResId) -> affix =
+            painterResource(R.drawable.affix_storming)
+
+        stringResource(AffixesSet.Entangling.nameResId) -> affix =
+            painterResource(R.drawable.affix_entangling)
+
+        stringResource(AffixesSet.Afflicted.nameResId) -> affix =
+            painterResource(R.drawable.affix_afflicted)
+
+        stringResource(AffixesSet.Incorporeal.nameResId) -> affix =
+            painterResource(R.drawable.affix_incorporeal)
+
+        stringResource(AffixesSet.Shielding.nameResId) -> affix =
+            painterResource(R.drawable.affix_shielding)
+    }
+    return affix
+}
 
