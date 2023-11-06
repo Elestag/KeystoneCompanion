@@ -2,7 +2,6 @@ package com.ostapenko.keystonecompanion.ui.main
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,16 +12,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -35,6 +35,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -42,6 +43,10 @@ import androidx.navigation.fragment.findNavController
 import com.ostapenko.keystonecompanion.R
 import com.ostapenko.keystonecompanion.model.dungeons.AffixesSet
 import com.ostapenko.keystonecompanion.ui.theme.MyKeystoneTheme
+import com.ostapenko.keystonecompanion.ui.theme.md_theme_dark_onErrorContainer
+import com.ostapenko.keystonecompanion.ui.theme.md_theme_dark_tertiary
+import com.ostapenko.keystonecompanion.ui.theme.md_theme_light_inverseSurface
+import com.ostapenko.keystonecompanion.ui.theme.shapes
 import com.ostapenko.keystonecompanion.ui.theme.typography
 import com.ostapenko.keystonecompanion.viewmodel.main.NetworkViewModel
 
@@ -65,12 +70,9 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
 
-
 }
-
 
 @Composable
 fun CompanionTopAppBar() {
@@ -86,55 +88,46 @@ fun CutoffsAndButtons(
 ) {
     val cutoffs by viewModel.rating.collectAsState()
     if (cutoffs.isNotEmpty()) {
-        Log.d(
-            "cutoffs",
-            "${cutoffs.size} = cutoffs.size, ${cutoffs[0]} = cutoffs[0], ${cutoffs[1]} = cutoffs[1]"
-        )
+        /*   Log.d(
+               "cutoffs",
+               "${cutoffs.size} = cutoffs.size, ${cutoffs[0]} = cutoffs[0], ${cutoffs[1]} = cutoffs[1]"
+           )*/
         MyKeystoneTheme {
             Surface {
                 Column(
                     modifier = modifier
-                        .background(Color.Black)
                         .fillMaxSize()
                         .padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
-                    Spacer(modifier = modifier.height(160.dp))
+                    Spacer(modifier = modifier.height(120.dp))
                     Text(
                         text = "Cutoffs rating",
-                        color = Color.White,
-                        style = typography.h1
+                        style = typography.titleLarge
                     )
                     Spacer(modifier = Modifier.height(10.dp))
                     val ratingColor = Color(android.graphics.Color.parseColor(cutoffs[1]))
                     Text(
                         text = cutoffs[0].substring(0, 4),
                         color = ratingColor,
-                        style = typography.h1
+                        style = typography.titleLarge
                     )
-                    Column(
+                   // Spacer(modifier = Modifier.height(30.dp))
+                    Button(shape = shapes.large,
                         modifier = modifier
-                            .width(200.dp)
-                            .padding(2.dp)
-                            .fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Button(onClick = {
+                            .width(180.dp)
+                            .height(50.dp),
+                        onClick = {
                             navHostController.navigate(R.id.action_mainFragment_to_dungeonsFragment)
                         })
-                        {
-                            Text(
-                                text = "Dungeons",
-                                modifier = modifier.width(150.dp),
-                                style = typography.button,
-                                textAlign = TextAlign.Center
-                            )
-                        }
-                        Spacer(modifier = modifier.height(10.dp))
+                    {
+                        //todo finish this button
+                        Text(text = "Dungeons",
+                            style = typography.titleMedium)
                     }
-                    Spacer(modifier = modifier.height(20.dp))
+
+                    Spacer(modifier = modifier.height(40.dp))
                     WeeklyModifiers(modifier, viewModel)
                 }
             }
@@ -142,60 +135,64 @@ fun CutoffsAndButtons(
     }
 }
 
-/*private fun checkTyraFortAffix(name: String) {
-      if (name == getString(AffixesSet.Tyrannical.nameResId)) {
-          binding.tyraFortAffix.setImageResource(R.drawable.affix_tyrannical)
-      } else {
-          binding.tyraFortAffix.setImageResource(R.drawable.affix_fortified)
-      }
-  }*/
 
 @Composable
 fun WeeklyModifiers(modifier: Modifier = Modifier, viewModel: NetworkViewModel) {
     val affixes by viewModel.affixes.collectAsState()
-    Log.d("affixes", "${affixes[0]}=it[0], ${affixes[1]}=it[1], ${affixes[2]}=it[2]")
-    val tyraForAffix = if (affixes[0] == stringResource(id = AffixesSet.Tyrannical.nameResId)) {
-        painterResource(id = AffixesSet.Tyrannical.imageResId)
-    } else {
-        painterResource(id = AffixesSet.Fortified.imageResId)
-    }
+//    Log.d("affixes", "${affixes[0]}=it[0], ${affixes[1]}=it[1], ${affixes[2]}=it[2]")
+    val tyraForAffix =
+        if (affixes.isNotEmpty() && affixes[0] == stringResource(id = AffixesSet.Tyrannical.nameResId)) {
+            painterResource(id = AffixesSet.Tyrannical.imageResId)
+        } else {
+            painterResource(id = AffixesSet.Fortified.imageResId)
+        }
     val affixOne = checkAffix(name = affixes[1])
     val affixTwo = checkAffix(name = affixes[2])
 
     MyKeystoneTheme {
         Surface {
             Column(
-                modifier = modifier
-                    .background(Color.Black),
+                modifier = modifier,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(text = "Weekly M+ modifiers", color = Color.White, style = typography.h1)
-                Spacer(modifier = modifier.height(16.dp))
-                Row(
-                    modifier = modifier
-                        .fillMaxSize(),
-                    horizontalArrangement = Arrangement.SpaceAround,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Image(
-                        painter = tyraForAffix,
-                        contentDescription = "affix tyrannical",
-                        modifier.size(56.dp)
-                    )
-                    Image(
-                        painter = affixOne,
-                        contentDescription = "affix one",
-                        modifier.size(56.dp)
-                    )
-                    Image(
-                        painter = affixTwo,
-                        contentDescription = "affix two",
-                        modifier.size(56.dp)
-                    )
-                }
+                Text(text = "Weekly M+ modifiers",
+                    style = typography.titleLarge)
+
+                ModifierImages(
+                    tyraFortAffix = tyraForAffix,
+                    affixOne = affixOne,
+                    affixTwo = affixTwo
+                )
             }
         }
+    }
+}
+
+private val modifierSize = 56.dp
+
+@Composable
+fun ModifierImages(tyraFortAffix: Painter, affixOne: Painter?, affixTwo: Painter?) {
+    Row(
+        Modifier.fillMaxSize(),
+        horizontalArrangement = Arrangement.SpaceAround,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            painter = tyraFortAffix,
+            contentDescription = "Weekly modifier - $tyraFortAffix",
+            Modifier.size(modifierSize)
+        )
+        Image(
+            painter = affixOne ?: painterResource(id = R.drawable.affix_tyrannical),
+            contentDescription = "Weekly modifier - $affixOne",
+            Modifier.size(modifierSize)
+        )
+        Image(
+            painter = affixTwo ?: painterResource(id = R.drawable.affix_tyrannical),
+            contentDescription = "Weekly modifier - $affixTwo",
+            Modifier.size(modifierSize)
+        )
     }
 }
 

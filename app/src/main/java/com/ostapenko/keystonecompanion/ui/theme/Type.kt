@@ -1,7 +1,7 @@
 package com.ostapenko.keystonecompanion.ui.theme
 
 import android.os.Build
-import androidx.compose.material.Typography
+import androidx.compose.material3.Typography
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -22,47 +22,30 @@ private val fontFamilyKulim = FontFamily(
     )
 )
 
-private val fontFamilyLato = FontFamily(
-    listOf(
-        Font(
-            resId = R.font.lato_regular
-        ),
-        Font(
-            resId = R.font.lato_bold,
-            weight = FontWeight.Bold
-        )
-    )
-)
-
 val typography = Typography(
-    defaultFontFamily = fontFamilyLato,
-    h1 = TextStyle(
+    titleLarge = TextStyle(
         fontFamily = fontFamilyKulim,
         fontWeight = FontWeight.Light,
         fontSize = 24.sp,
         letterSpacing = (1.15).sp
     ),
-    h2 = TextStyle(
+    titleMedium = TextStyle(
         fontFamily = fontFamilyKulim,
         fontWeight = FontWeight.Bold,
         fontSize = 16.sp,
         letterSpacing = (1.15).sp
     ),
-    h3 = TextStyle(
+    titleSmall = TextStyle(
         fontWeight = FontWeight.Light,
         fontSize = 14.sp,
         letterSpacing = 0.sp
     ),
-    body1 = TextStyle(
+    bodyMedium = TextStyle(
         fontSize = 14.sp,
         letterSpacing = 0.sp
     ),
-    button = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 14.sp,
-        letterSpacing = (1.15).sp
-    ),
-    caption = TextStyle(
+
+    headlineSmall = TextStyle(
         fontFamily = fontFamilyKulim,
         fontSize = 12.sp,
         letterSpacing = (1.15).sp

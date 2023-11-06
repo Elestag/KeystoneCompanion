@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,7 +28,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavArgs
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -37,15 +35,9 @@ import com.ostapenko.keystonecompanion.R
 import com.ostapenko.keystonecompanion.model.dungeons.AddonDungeon
 import com.ostapenko.keystonecompanion.model.dungeons.boss.DungeonBossImpl
 import com.ostapenko.keystonecompanion.ui.theme.MyKeystoneTheme
-import com.ostapenko.keystonecompanion.ui.theme.primaryBlack
-import com.ostapenko.keystonecompanion.ui.theme.primaryWhite
 import com.ostapenko.keystonecompanion.ui.theme.typography
 
 class DetailedDungeonFragment : Fragment() {
-
-    /*  private val binding by viewBinding { ItemDungeonDetailedRvBinding.bind(it) }
-      private lateinit var myAdapter: DetailedItemAdapter
-      private val mySnapHelper = PagerSnapHelper()*/
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,26 +63,7 @@ class DetailedDungeonFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*   val args = arguments
-           val name = args?.getString("name")
-
-
-           if (name !== null) {
-
-               binding.dungeonTextViewName.text = name
-               binding.descriptionTextView.text = dungeonDescription(name)
-               setDungeonImage(binding.dungeonImageView, name)
-               myAdapter = DetailedItemAdapter(showDetailedDungeon(name))
-               binding.detailedDungeonRecyclerView.apply {
-                   adapter = myAdapter
-
-               }
-               mySnapHelper.attachToRecyclerView(binding.detailedDungeonRecyclerView)
-           }*/
-
     }
-
-
 }
 
 
@@ -228,13 +201,11 @@ fun DungeonBossElement(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
-            .background(color = primaryBlack)
             .padding(top = 10.dp, start = 16.dp, end = 16.dp)
     ) {
         Text(
             text = stringResource(id = bossNameId),
-            style = typography.h2,
-            color = primaryWhite
+            style = typography.titleMedium,
         )
         Image(
             painterResource(id = bossImageId),
@@ -248,15 +219,13 @@ fun DungeonBossElement(
         Column(modifier = modifier) {
             Text(
                 text = stringResource(id = bossDescriptionId),
-                style = typography.h3,
-                color = primaryWhite,
+                style = typography.titleSmall,
                 maxLines = if (isExpandedDescription) Int.MAX_VALUE else 1,
             )
             TextButton(onClick = { isExpandedDescription = !isExpandedDescription }) {
                 Text(
                     text = if (!isExpandedDescription) "Show more" else "Show less",
-                    style = typography.button,
-                    color = primaryWhite
+                    style = typography.titleSmall,
                 )
             }
         }
@@ -264,15 +233,13 @@ fun DungeonBossElement(
         Column(modifier = modifier) {
             Text(
                 text = stringResource(id = bossTipsId),
-                style = typography.h3,
-                color = primaryWhite,
+                style = typography.titleSmall,
                 maxLines = if (isExpandedTips) Int.MAX_VALUE else 1
             )
             TextButton(onClick = { isExpandedTips = !isExpandedTips }) {
                 Text(
                     text = if (!isExpandedTips) "Show more" else "Show less",
-                    style = typography.button,
-                    color = primaryWhite
+                    style = typography.titleSmall,
                 )
             }
         }
@@ -280,11 +247,3 @@ fun DungeonBossElement(
     }
 }
 
-/*
-@Preview(showBackground = true)
-@Composable
-fun ShowDungeonDetailedPreview() {
-    MyKeystoneTheme {
-        DungeonBossDetailed(dungeonName = "Algeth\'ar Academy")
-    }
-}*/
