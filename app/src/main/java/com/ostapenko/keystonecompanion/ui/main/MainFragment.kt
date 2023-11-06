@@ -6,44 +6,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Icon
 import androidx.compose.material.RadioButton
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material.TopAppBar
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -51,14 +43,13 @@ import androidx.navigation.fragment.findNavController
 import com.ostapenko.keystonecompanion.R
 import com.ostapenko.keystonecompanion.model.Region
 import com.ostapenko.keystonecompanion.model.dungeons.AffixesSet
+import com.ostapenko.keystonecompanion.ui.KeystoneApplication
+import com.ostapenko.keystonecompanion.ui.MainActivity
 import com.ostapenko.keystonecompanion.ui.theme.MyKeystoneTheme
-import com.ostapenko.keystonecompanion.ui.theme.md_theme_dark_background
-import com.ostapenko.keystonecompanion.ui.theme.md_theme_dark_onErrorContainer
-import com.ostapenko.keystonecompanion.ui.theme.md_theme_dark_tertiary
-import com.ostapenko.keystonecompanion.ui.theme.md_theme_light_inverseSurface
 import com.ostapenko.keystonecompanion.ui.theme.shapes
 import com.ostapenko.keystonecompanion.ui.theme.typography
 import com.ostapenko.keystonecompanion.viewmodel.main.NetworkViewModel
+import kotlinx.coroutines.launch
 
 
 class MainFragment : Fragment() {
@@ -83,7 +74,7 @@ class MainFragment : Fragment() {
     }
 
 }
-
+//TODO change retrofit so it use dataStore to get score and affixes by region
 
 @Composable
 fun CutoffsAndButtons(
@@ -92,9 +83,6 @@ fun CutoffsAndButtons(
     navHostController: NavController
 ) {
     val cutoffs by viewModel.rating.collectAsState()
-    val selectedRegion by remember {
-        mutableStateOf(Region.EU)
-    }
     if (cutoffs.isNotEmpty()) {
         /*   Log.d(
                "cutoffs",
@@ -107,9 +95,7 @@ fun CutoffsAndButtons(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            RegionSelection(selectedRegion = remember {
-                mutableStateOf(selectedRegion)
-            })
+            RegionSelection()
             Spacer(modifier = modifier.height(30.dp))
             Text(
                 text = "Cutoffs rating",
@@ -131,7 +117,6 @@ fun CutoffsAndButtons(
                     navHostController.navigate(R.id.action_mainFragment_to_dungeonsFragment)
                 })
             {
-                //todo finish this button
                 Text(
                     text = "Dungeons",
                     style = typography.titleMedium
@@ -228,7 +213,6 @@ fun CompanionApp(viewModel: NetworkViewModel, navController: NavController) {
 @Composable
 fun CompanionTopAppBar() {
     val appBarBackgroundColor = MaterialTheme.colorScheme.background
-    //todo make icon
     TopAppBar(
         title = {
             Row {
@@ -246,16 +230,28 @@ fun CompanionTopAppBar() {
 }
 
 @Composable
-fun RegionSelection(
-    selectedRegion: MutableState<Region>
-) {
+fun RegionSelection() {
+    val app = LocalContext.current.applicationContext as KeystoneApplication
+    val selectedRegion by app.dataStoreManager.selectedRegion.collectAsState(initial = null)
+    val viewModelScope = rememberCoroutineScope()
+
+    LaunchedEffect(selectedRegion) {
+        selectedRegion?.let {
+            app.dataStoreManager.saveSelectedRegion(it)
+        }
+    }
+
     Row(modifier = Modifier.padding(16.dp)) {
         Text(text = "Select Region")
         Spacer(modifier = Modifier.height(8.dp))
         Column {
             RadioButton(
-                selected = selectedRegion.value == Region.US,
-                onClick = { selectedRegion.value = Region.US })
+                selected = selectedRegion == Region.US,
+                onClick = {
+                    viewModelScope.launch {
+                        app.dataStoreManager.saveSelectedRegion(Region.US)
+                    }
+                })
             Text(
                 text = "US",
                 modifier = Modifier.padding(start = 16.dp)
@@ -264,8 +260,12 @@ fun RegionSelection(
 
         Column {
             RadioButton(
-                selected = selectedRegion.value == Region.EU,
-                onClick = { selectedRegion.value = Region.EU })
+                selected = selectedRegion == Region.EU,
+                onClick = {
+                    viewModelScope.launch {
+                        app.dataStoreManager.saveSelectedRegion(Region.EU)
+                    }
+                })
             Text(
                 text = "EU",
                 modifier = Modifier.padding(start = 16.dp)
@@ -274,14 +274,17 @@ fun RegionSelection(
 
         Column {
             RadioButton(
-                selected = selectedRegion.value == Region.TW,
-                onClick = { selectedRegion.value = Region.TW })
+                selected = selectedRegion == Region.TW,
+                onClick = {
+                    viewModelScope.launch {
+                        app.dataStoreManager.saveSelectedRegion(Region.TW)
+                    }
+                })
             Text(
                 text = "TW",
                 modifier = Modifier.padding(start = 16.dp)
             )
         }
-
 
     }
 }
