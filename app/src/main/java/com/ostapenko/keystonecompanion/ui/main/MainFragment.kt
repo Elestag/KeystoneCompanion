@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,15 +18,22 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.Icon
+import androidx.compose.material.RadioButton
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -41,8 +49,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.ostapenko.keystonecompanion.R
+import com.ostapenko.keystonecompanion.model.Region
 import com.ostapenko.keystonecompanion.model.dungeons.AffixesSet
 import com.ostapenko.keystonecompanion.ui.theme.MyKeystoneTheme
+import com.ostapenko.keystonecompanion.ui.theme.md_theme_dark_background
 import com.ostapenko.keystonecompanion.ui.theme.md_theme_dark_onErrorContainer
 import com.ostapenko.keystonecompanion.ui.theme.md_theme_dark_tertiary
 import com.ostapenko.keystonecompanion.ui.theme.md_theme_light_inverseSurface
@@ -74,11 +84,6 @@ class MainFragment : Fragment() {
 
 }
 
-@Composable
-fun CompanionTopAppBar() {
-    //todo make icon
-    TopAppBar(title = { Text(text = "Keystone Companion") })
-}
 
 @Composable
 fun CutoffsAndButtons(
@@ -87,50 +92,54 @@ fun CutoffsAndButtons(
     navHostController: NavController
 ) {
     val cutoffs by viewModel.rating.collectAsState()
+    val selectedRegion by remember {
+        mutableStateOf(Region.EU)
+    }
     if (cutoffs.isNotEmpty()) {
         /*   Log.d(
                "cutoffs",
                "${cutoffs.size} = cutoffs.size, ${cutoffs[0]} = cutoffs[0], ${cutoffs[1]} = cutoffs[1]"
            )*/
-        MyKeystoneTheme {
-            Surface {
-                Column(
-                    modifier = modifier
-                        .fillMaxSize()
-                        .padding(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
-                    Spacer(modifier = modifier.height(120.dp))
-                    Text(
-                        text = "Cutoffs rating",
-                        style = typography.titleLarge
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
-                    val ratingColor = Color(android.graphics.Color.parseColor(cutoffs[1]))
-                    Text(
-                        text = cutoffs[0].substring(0, 4),
-                        color = ratingColor,
-                        style = typography.titleLarge
-                    )
-                   // Spacer(modifier = Modifier.height(30.dp))
-                    Button(shape = shapes.large,
-                        modifier = modifier
-                            .width(180.dp)
-                            .height(50.dp),
-                        onClick = {
-                            navHostController.navigate(R.id.action_mainFragment_to_dungeonsFragment)
-                        })
-                    {
-                        //todo finish this button
-                        Text(text = "Dungeons",
-                            style = typography.titleMedium)
-                    }
-
-                    Spacer(modifier = modifier.height(40.dp))
-                    WeeklyModifiers(modifier, viewModel)
-                }
+            RegionSelection(selectedRegion = remember {
+                mutableStateOf(selectedRegion)
+            })
+            Spacer(modifier = modifier.height(30.dp))
+            Text(
+                text = "Cutoffs rating",
+                style = typography.titleLarge
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            val ratingColor = Color(android.graphics.Color.parseColor(cutoffs[1]))
+            Text(
+                text = cutoffs[0].substring(0, 4),
+                color = ratingColor,
+                style = typography.titleLarge
+            )
+            // Spacer(modifier = Modifier.height(30.dp))
+            Button(shape = shapes.large,
+                modifier = modifier
+                    .width(180.dp)
+                    .height(50.dp),
+                onClick = {
+                    navHostController.navigate(R.id.action_mainFragment_to_dungeonsFragment)
+                })
+            {
+                //todo finish this button
+                Text(
+                    text = "Dungeons",
+                    style = typography.titleMedium
+                )
             }
+
+            Spacer(modifier = modifier.height(40.dp))
+            WeeklyModifiers(modifier, viewModel)
         }
     }
 }
@@ -156,8 +165,10 @@ fun WeeklyModifiers(modifier: Modifier = Modifier, viewModel: NetworkViewModel) 
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(text = "Weekly M+ modifiers",
-                    style = typography.titleLarge)
+                Text(
+                    text = "Weekly M+ modifiers",
+                    style = typography.titleLarge
+                )
 
                 ModifierImages(
                     tyraFortAffix = tyraForAffix,
@@ -200,13 +211,78 @@ fun ModifierImages(tyraFortAffix: Painter, affixOne: Painter?, affixTwo: Painter
 fun CompanionApp(viewModel: NetworkViewModel, navController: NavController) {
 
     MyKeystoneTheme {
-        Scaffold(topBar = { CompanionTopAppBar() }) { contPadding ->
-            CutoffsAndButtons(
-                modifier = Modifier.padding(contPadding),
-                viewModel = viewModel,
-                navHostController = navController
+        Surface {
+            Scaffold(topBar = { CompanionTopAppBar() }
+            ) { contPadding ->
+                CutoffsAndButtons(
+                    modifier = Modifier.padding(contPadding),
+                    viewModel = viewModel,
+                    navHostController = navController
+                )
+            }
+        }
+
+    }
+}
+
+@Composable
+fun CompanionTopAppBar() {
+    val appBarBackgroundColor = MaterialTheme.colorScheme.background
+    //todo make icon
+    TopAppBar(
+        title = {
+            Row {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_keystone),
+                    contentDescription = "App icon",
+                    modifier = Modifier.size(36.dp)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = "Keystone Companion", style = typography.headlineLarge)
+            }
+        },
+        backgroundColor = appBarBackgroundColor
+    )
+}
+
+@Composable
+fun RegionSelection(
+    selectedRegion: MutableState<Region>
+) {
+    Row(modifier = Modifier.padding(16.dp)) {
+        Text(text = "Select Region")
+        Spacer(modifier = Modifier.height(8.dp))
+        Column {
+            RadioButton(
+                selected = selectedRegion.value == Region.US,
+                onClick = { selectedRegion.value = Region.US })
+            Text(
+                text = "US",
+                modifier = Modifier.padding(start = 16.dp)
             )
         }
+
+        Column {
+            RadioButton(
+                selected = selectedRegion.value == Region.EU,
+                onClick = { selectedRegion.value = Region.EU })
+            Text(
+                text = "EU",
+                modifier = Modifier.padding(start = 16.dp)
+            )
+        }
+
+        Column {
+            RadioButton(
+                selected = selectedRegion.value == Region.TW,
+                onClick = { selectedRegion.value = Region.TW })
+            Text(
+                text = "TW",
+                modifier = Modifier.padding(start = 16.dp)
+            )
+        }
+
+
     }
 }
 

@@ -23,6 +23,7 @@ private val fontFamilyKulim = FontFamily(
 )
 
 val typography = Typography(
+
     titleLarge = TextStyle(
         fontFamily = fontFamilyKulim,
         fontWeight = FontWeight.Light,
@@ -50,4 +51,10 @@ val typography = Typography(
         fontSize = 12.sp,
         letterSpacing = (1.15).sp
     ),
+    headlineLarge = TextStyle(
+        fontFamily = fontFamilyKulim,
+        fontWeight = FontWeight.Light,
+        fontSize = 30.sp,
+        letterSpacing = (1.15).sp
+    )
 )

@@ -78,7 +78,7 @@ fun MyKeystoneTheme(
     content: @Composable() () -> Unit
 ) {
     val colors = if (!useDarkTheme) {
-        lightColors
+        darkColors
     } else {
         darkColors
     }
