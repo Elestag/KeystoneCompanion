@@ -16,14 +16,21 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 class DataStoreManager(context: Context) {
     private val dataStore = context.dataStore
 
-    val selectedRegion: Flow<Region?> = dataStore.data.map { preferences ->
+   /* val selectedRegion: Flow<Region?> = dataStore.data.map { preferences ->
         val regionName = preferences[PreferencesKeys.SELECTED_REGION]
         regionName?.let { Region.valueOf(it) }
-    }
+    }*/
 
     suspend fun saveSelectedRegion(region: Region) {
         dataStore.edit { preferences ->
             preferences[PreferencesKeys.SELECTED_REGION] = region.name
+        }
+    }
+
+    fun getSelectedRegion(): Flow<Region?> {
+        return dataStore.data.map { preferences ->
+            val regionName = preferences[PreferencesKeys.SELECTED_REGION]
+            regionName?.let { Region.valueOf(it) }
         }
     }
 

@@ -4,10 +4,6 @@ import android.app.Application
 import com.ostapenko.keystonecompanion.ui.main.datastore.DataStoreManager
 
 class KeystoneApplication : Application() {
-    lateinit var dataStoreManager: DataStoreManager
+    val dataStoreManager: DataStoreManager by lazy { DataStoreManager(this) }
 
-    override fun onCreate() {
-        super.onCreate()
-        dataStoreManager = DataStoreManager(this)
-    }
 }

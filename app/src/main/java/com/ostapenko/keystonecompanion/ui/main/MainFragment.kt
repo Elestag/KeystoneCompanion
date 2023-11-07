@@ -44,17 +44,22 @@ import com.ostapenko.keystonecompanion.R
 import com.ostapenko.keystonecompanion.model.Region
 import com.ostapenko.keystonecompanion.model.dungeons.AffixesSet
 import com.ostapenko.keystonecompanion.ui.KeystoneApplication
-import com.ostapenko.keystonecompanion.ui.MainActivity
+import com.ostapenko.keystonecompanion.ui.main.datastore.DataStoreManager
 import com.ostapenko.keystonecompanion.ui.theme.MyKeystoneTheme
 import com.ostapenko.keystonecompanion.ui.theme.shapes
 import com.ostapenko.keystonecompanion.ui.theme.typography
 import com.ostapenko.keystonecompanion.viewmodel.main.NetworkViewModel
+import com.ostapenko.keystonecompanion.viewmodel.main.NetworkViewModelFactory
 import kotlinx.coroutines.launch
 
 
 class MainFragment : Fragment() {
 
-    private val viewModel: NetworkViewModel by viewModels()
+    private val viewModelFactory: NetworkViewModelFactory by lazy {
+        NetworkViewModelFactory((requireActivity().application as KeystoneApplication).dataStoreManager)
+    }
+
+    private val viewModel: NetworkViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -74,7 +79,7 @@ class MainFragment : Fragment() {
     }
 
 }
-//TODO change retrofit so it use dataStore to get score and affixes by region
+//TODO currently rating updates only after relaunch app, need to fix it
 
 @Composable
 fun CutoffsAndButtons(
@@ -232,7 +237,7 @@ fun CompanionTopAppBar() {
 @Composable
 fun RegionSelection() {
     val app = LocalContext.current.applicationContext as KeystoneApplication
-    val selectedRegion by app.dataStoreManager.selectedRegion.collectAsState(initial = null)
+    val selectedRegion by app.dataStoreManager.getSelectedRegion().collectAsState(initial = null)
     val viewModelScope = rememberCoroutineScope()
 
     LaunchedEffect(selectedRegion) {
