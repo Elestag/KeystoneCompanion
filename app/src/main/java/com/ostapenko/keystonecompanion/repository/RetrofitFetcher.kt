@@ -1,15 +1,11 @@
 package com.ostapenko.keystonecompanion.repository
 
 
-import android.content.Context
-import android.util.Log
-import androidx.compose.runtime.collectAsState
 import com.ostapenko.keystonecompanion.model.Region
 import com.ostapenko.keystonecompanion.network.api.NetworkApi
 import com.ostapenko.keystonecompanion.ui.main.datastore.DataStoreManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -41,8 +37,7 @@ class RetrofitFetcher(private val dataStoreManager: DataStoreManager) {
         //Log.d(TAG, "$weeklyAffixes, and list $weeklyAffixesList")
     }.flowOn(Dispatchers.IO) // Run the Flow on an IO dispatcher to avoid blocking the main thread
 
-  suspend  fun fetchCutoffsRaiderIoApi(): Flow<List<String>> = flow {
-      val selectedRegion = dataStoreManager.getSelectedRegion().first() ?: baseRegion
+  suspend  fun fetchCutoffsRaiderIoApi(selectedRegion: Region): Flow<List<String>> = flow {
         // Create a Retrofit instance with a Gson converter
         val retrofit = Retrofit.Builder()
             .baseUrl("https://raider.io/api/")

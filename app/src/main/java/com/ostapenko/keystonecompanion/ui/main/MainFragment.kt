@@ -26,6 +26,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -58,6 +60,7 @@ class MainFragment : Fragment() {
     private val viewModelFactory: NetworkViewModelFactory by lazy {
         NetworkViewModelFactory((requireActivity().application as KeystoneApplication).dataStoreManager)
     }
+    private lateinit var navController: NavController
 
     private val viewModel: NetworkViewModel by viewModels { viewModelFactory }
 
@@ -68,7 +71,7 @@ class MainFragment : Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                val navController = findNavController()
+                navController = findNavController()
                 CompanionApp(viewModel, navController = navController)
             }
         }
@@ -76,6 +79,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 
 }
@@ -100,7 +104,9 @@ fun CutoffsAndButtons(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            RegionSelection()
+            RegionSelection { selectedRegion ->
+                viewModel.setRegion(selectedRegion)
+            }
             Spacer(modifier = modifier.height(30.dp))
             Text(
                 text = "Cutoffs rating",
@@ -235,10 +241,10 @@ fun CompanionTopAppBar() {
 }
 
 @Composable
-fun RegionSelection() {
+fun RegionSelection(onRegionSelected: (Region) -> Unit) {
     val app = LocalContext.current.applicationContext as KeystoneApplication
     val selectedRegion by app.dataStoreManager.getSelectedRegion().collectAsState(initial = null)
-    val viewModelScope = rememberCoroutineScope()
+    val selectedRegionState = remember { mutableStateOf(selectedRegion) }
 
     LaunchedEffect(selectedRegion) {
         selectedRegion?.let {
@@ -249,50 +255,83 @@ fun RegionSelection() {
     Row(modifier = Modifier.padding(16.dp)) {
         Text(text = "Select Region")
         Spacer(modifier = Modifier.height(8.dp))
-        Column {
-            RadioButton(
-                selected = selectedRegion == Region.US,
-                onClick = {
-                    viewModelScope.launch {
-                        app.dataStoreManager.saveSelectedRegion(Region.US)
-                    }
-                })
-            Text(
-                text = "US",
-                modifier = Modifier.padding(start = 16.dp)
-            )
-        }
 
-        Column {
-            RadioButton(
-                selected = selectedRegion == Region.EU,
-                onClick = {
-                    viewModelScope.launch {
-                        app.dataStoreManager.saveSelectedRegion(Region.EU)
-                    }
-                })
-            Text(
-                text = "EU",
-                modifier = Modifier.padding(start = 16.dp)
-            )
+        listOf(Region.US, Region.EU, Region.TW).forEach { region ->
+            Column {
+                RadioButton(
+                    selected = selectedRegionState.value == region,
+                    onClick = {
+                        selectedRegionState.value = region
+                        onRegionSelected(region)
+                    })
+                Text(
+                    text = region.name,
+                    modifier = Modifier.padding(start = 16.dp)
+                )
+            }
         }
-
-        Column {
-            RadioButton(
-                selected = selectedRegion == Region.TW,
-                onClick = {
-                    viewModelScope.launch {
-                        app.dataStoreManager.saveSelectedRegion(Region.TW)
-                    }
-                })
-            Text(
-                text = "TW",
-                modifier = Modifier.padding(start = 16.dp)
-            )
-        }
-
     }
 }
+
+//@Composable
+//fun RegionSelection() {
+//    val app = LocalContext.current.applicationContext as KeystoneApplication
+//    val selectedRegion by app.dataStoreManager.getSelectedRegion().collectAsState(initial = null)
+//    val viewModelScope = rememberCoroutineScope()
+//
+//    LaunchedEffect(selectedRegion) {
+//        selectedRegion?.let {
+//            app.dataStoreManager.saveSelectedRegion(it)
+//        }
+//    }
+//
+//    Row(modifier = Modifier.padding(16.dp)) {
+//        Text(text = "Select Region")
+//        Spacer(modifier = Modifier.height(8.dp))
+//        Column {
+//            RadioButton(
+//                selected = selectedRegion == Region.US,
+//                onClick = {
+//                    viewModelScope.launch {
+//                        app.dataStoreManager.saveSelectedRegion(Region.US)
+//                    }
+//                })
+//            Text(
+//                text = "US",
+//                modifier = Modifier.padding(start = 16.dp)
+//            )
+//        }
+//
+//        Column {
+//            RadioButton(
+//                selected = selectedRegion == Region.EU,
+//                onClick = {
+//                    viewModelScope.launch {
+//                        app.dataStoreManager.saveSelectedRegion(Region.EU)
+//                    }
+//                })
+//            Text(
+//                text = "EU",
+//                modifier = Modifier.padding(start = 16.dp)
+//            )
+//        }
+//
+//        Column {
+//            RadioButton(
+//                selected = selectedRegion == Region.TW,
+//                onClick = {
+//                    viewModelScope.launch {
+//                        app.dataStoreManager.saveSelectedRegion(Region.TW)
+//                    }
+//                })
+//            Text(
+//                text = "TW",
+//                modifier = Modifier.padding(start = 16.dp)
+//            )
+//        }
+//
+//    }
+//}
 
 @Composable
 fun checkAffix(name: String): Painter {
