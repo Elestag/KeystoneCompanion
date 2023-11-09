@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "region_prefs")
 
 class DataStoreManager(context: Context) {
-    private val dataStore = context.dataStore
+    val dataStore = context.dataStore
 
    /* val selectedRegion: Flow<Region?> = dataStore.data.map { preferences ->
         val regionName = preferences[PreferencesKeys.SELECTED_REGION]

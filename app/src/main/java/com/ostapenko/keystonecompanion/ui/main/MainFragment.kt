@@ -38,6 +38,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -52,6 +53,7 @@ import com.ostapenko.keystonecompanion.ui.theme.shapes
 import com.ostapenko.keystonecompanion.ui.theme.typography
 import com.ostapenko.keystonecompanion.viewmodel.main.NetworkViewModel
 import com.ostapenko.keystonecompanion.viewmodel.main.NetworkViewModelFactory
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 
@@ -244,14 +246,13 @@ fun CompanionTopAppBar() {
 fun RegionSelection(onRegionSelected: (Region) -> Unit) {
     val app = LocalContext.current.applicationContext as KeystoneApplication
     val selectedRegion by app.dataStoreManager.getSelectedRegion().collectAsState(initial = null)
-    val selectedRegionState = remember { mutableStateOf(selectedRegion) }
+    val viewModelScope = rememberCoroutineScope()
 
     LaunchedEffect(selectedRegion) {
         selectedRegion?.let {
             app.dataStoreManager.saveSelectedRegion(it)
         }
     }
-
     Row(modifier = Modifier.padding(16.dp)) {
         Text(text = "Select Region")
         Spacer(modifier = Modifier.height(8.dp))
@@ -259,10 +260,12 @@ fun RegionSelection(onRegionSelected: (Region) -> Unit) {
         listOf(Region.US, Region.EU, Region.TW).forEach { region ->
             Column {
                 RadioButton(
-                    selected = selectedRegionState.value == region,
+                    selected = selectedRegion == region,
                     onClick = {
-                        selectedRegionState.value = region
-                        onRegionSelected(region)
+                        viewModelScope.launch {
+                            onRegionSelected(region)
+                            app.dataStoreManager.saveSelectedRegion(region)
+                        }
                     })
                 Text(
                     text = region.name,
