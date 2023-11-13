@@ -1,6 +1,8 @@
 package com.ostapenko.keystonecompanion.ui.main
 
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +17,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.RadioButton
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
@@ -26,11 +29,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.ComposeView
@@ -38,7 +40,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -46,25 +47,31 @@ import androidx.navigation.fragment.findNavController
 import com.ostapenko.keystonecompanion.R
 import com.ostapenko.keystonecompanion.model.Region
 import com.ostapenko.keystonecompanion.model.dungeons.AffixesSet
+import com.ostapenko.keystonecompanion.network.model.Cutoffs
 import com.ostapenko.keystonecompanion.ui.KeystoneApplication
-import com.ostapenko.keystonecompanion.ui.main.datastore.DataStoreManager
 import com.ostapenko.keystonecompanion.ui.theme.MyKeystoneTheme
 import com.ostapenko.keystonecompanion.ui.theme.shapes
 import com.ostapenko.keystonecompanion.ui.theme.typography
 import com.ostapenko.keystonecompanion.viewmodel.main.NetworkViewModel
 import com.ostapenko.keystonecompanion.viewmodel.main.NetworkViewModelFactory
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 
 class MainFragment : Fragment() {
 
     private val viewModelFactory: NetworkViewModelFactory by lazy {
-        NetworkViewModelFactory((requireActivity().application as KeystoneApplication).dataStoreManager)
+        NetworkViewModelFactory(
+            (requireActivity().application as KeystoneApplication).dataStoreManager,
+            (requireActivity().application as KeystoneApplication).connectivityManager
+        )
     }
+    private val viewModel: NetworkViewModel by viewModels { viewModelFactory }
     private lateinit var navController: NavController
 
-    private val viewModel: NetworkViewModel by viewModels { viewModelFactory }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -74,18 +81,17 @@ class MainFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 navController = findNavController()
-                CompanionApp(viewModel, navController = navController)
+                Column(modifier = Modifier.fillMaxSize()) {
+                    LazyColumn(modifier = Modifier.weight(1f)) {
+                        item {
+                            CompanionApp(viewModel, navController = navController)
+                        }
+                    }
+                }
             }
         }
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
 }
-//TODO currently rating updates only after relaunch app, need to fix it
 
 @Composable
 fun CutoffsAndButtons(
@@ -96,9 +102,9 @@ fun CutoffsAndButtons(
     val cutoffs by viewModel.rating.collectAsState()
     if (cutoffs.isNotEmpty()) {
         /*   Log.d(
-               "cutoffs",
-               "${cutoffs.size} = cutoffs.size, ${cutoffs[0]} = cutoffs[0], ${cutoffs[1]} = cutoffs[1]"
-           )*/
+           "cutoffs",
+           "${cutoffs.size} = cutoffs.size, ${cutoffs[0]} = cutoffs[0], ${cutoffs[1]} = cutoffs[1]"
+       )*/
         Column(
             modifier = modifier
                 .fillMaxSize()
@@ -115,9 +121,14 @@ fun CutoffsAndButtons(
                 style = typography.titleLarge
             )
             Spacer(modifier = Modifier.height(10.dp))
-            val ratingColor = Color(android.graphics.Color.parseColor(cutoffs[1]))
+            val ratingColor = if (cutoffs.size >= 2) {
+                Color(android.graphics.Color.parseColor(cutoffs[1]))
+            } else {
+                Color.White
+            }
+
             Text(
-                text = cutoffs[0].substring(0, 4),
+                text = cutoffs.getOrNull(0)?.substring(0, 4) ?: "N/A",
                 color = ratingColor,
                 style = typography.titleLarge
             )
@@ -136,12 +147,49 @@ fun CutoffsAndButtons(
                 )
             }
 
-            Spacer(modifier = modifier.height(40.dp))
+            Spacer(modifier = modifier.height(20.dp))
             WeeklyModifiers(modifier, viewModel)
         }
     }
 }
 
+@Composable
+fun CutoffsAndButtonsNoInternet(modifier: Modifier, navHostController: NavController) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Spacer(modifier = modifier.height(30.dp))
+        Text(
+            text = "Cutoffs rating",
+            style = typography.titleLarge
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        val ratingColor = Color.White
+        Text(
+            text = "N/A",
+            color = ratingColor,
+            style = typography.titleLarge
+        )
+        // Spacer(modifier = Modifier.height(30.dp))
+        Button(shape = shapes.large,
+            modifier = modifier
+                .width(180.dp)
+                .height(50.dp),
+            onClick = {
+                navHostController.navigate(R.id.action_mainFragment_to_dungeonsFragment)
+            })
+        {
+            Text(
+                text = "Dungeons",
+                style = typography.titleMedium
+            )
+        }
+    }
+}
 
 @Composable
 fun WeeklyModifiers(modifier: Modifier = Modifier, viewModel: NetworkViewModel) {
@@ -156,25 +204,21 @@ fun WeeklyModifiers(modifier: Modifier = Modifier, viewModel: NetworkViewModel) 
     val affixOne = checkAffix(name = affixes[1])
     val affixTwo = checkAffix(name = affixes[2])
 
-    MyKeystoneTheme {
-        Surface {
-            Column(
-                modifier = modifier,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "Weekly M+ modifiers",
-                    style = typography.titleLarge
-                )
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "Weekly M+ modifiers",
+            style = typography.titleLarge
+        )
 
-                ModifierImages(
-                    tyraFortAffix = tyraForAffix,
-                    affixOne = affixOne,
-                    affixTwo = affixTwo
-                )
-            }
-        }
+        ModifierImages(
+            tyraFortAffix = tyraForAffix,
+            affixOne = affixOne,
+            affixTwo = affixTwo
+        )
     }
 }
 
@@ -190,33 +234,48 @@ fun ModifierImages(tyraFortAffix: Painter, affixOne: Painter?, affixTwo: Painter
         Image(
             painter = tyraFortAffix,
             contentDescription = "Weekly modifier - $tyraFortAffix",
-            Modifier.size(modifierSize)
+            Modifier
+                .size(modifierSize)
+                .clip(shape = shapes.small)
         )
         Image(
             painter = affixOne ?: painterResource(id = R.drawable.affix_tyrannical),
             contentDescription = "Weekly modifier - $affixOne",
-            Modifier.size(modifierSize)
+            Modifier
+                .size(modifierSize)
+                .clip(shape = shapes.small)
         )
         Image(
             painter = affixTwo ?: painterResource(id = R.drawable.affix_tyrannical),
             contentDescription = "Weekly modifier - $affixTwo",
-            Modifier.size(modifierSize)
+            Modifier
+                .size(modifierSize)
+                .clip(shape = shapes.small)
         )
     }
 }
 
 @Composable
 fun CompanionApp(viewModel: NetworkViewModel, navController: NavController) {
+    val isNetworkAvailable = isNetworkAvailable(LocalContext.current)
 
     MyKeystoneTheme {
         Surface {
             Scaffold(topBar = { CompanionTopAppBar() }
             ) { contPadding ->
-                CutoffsAndButtons(
-                    modifier = Modifier.padding(contPadding),
-                    viewModel = viewModel,
-                    navHostController = navController
-                )
+                if (isNetworkAvailable) {
+                    CutoffsAndButtons(
+                        modifier = Modifier.padding(contPadding),
+                        viewModel = viewModel,
+                        navHostController = navController
+                    )
+                } else {
+                    CutoffsAndButtonsNoInternet(
+                        modifier = Modifier.padding(contPadding),
+                        navHostController = navController
+                    )
+                }
+
             }
         }
 
@@ -232,7 +291,9 @@ fun CompanionTopAppBar() {
                 Image(
                     painter = painterResource(id = R.drawable.ic_keystone),
                     contentDescription = "App icon",
-                    modifier = Modifier.size(36.dp)
+                    modifier = Modifier
+                        .size(36.dp)
+                        .clip(shape = shapes.medium)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(text = "Keystone Companion", style = typography.headlineLarge)
@@ -245,7 +306,8 @@ fun CompanionTopAppBar() {
 @Composable
 fun RegionSelection(onRegionSelected: (Region) -> Unit) {
     val app = LocalContext.current.applicationContext as KeystoneApplication
-    val selectedRegion by app.dataStoreManager.getSelectedRegion().collectAsState(initial = null)
+    val selectedRegion by app.dataStoreManager.getSelectedRegion()
+        .collectAsState(initial = null)
     val viewModelScope = rememberCoroutineScope()
 
     LaunchedEffect(selectedRegion) {
@@ -275,66 +337,6 @@ fun RegionSelection(onRegionSelected: (Region) -> Unit) {
         }
     }
 }
-
-//@Composable
-//fun RegionSelection() {
-//    val app = LocalContext.current.applicationContext as KeystoneApplication
-//    val selectedRegion by app.dataStoreManager.getSelectedRegion().collectAsState(initial = null)
-//    val viewModelScope = rememberCoroutineScope()
-//
-//    LaunchedEffect(selectedRegion) {
-//        selectedRegion?.let {
-//            app.dataStoreManager.saveSelectedRegion(it)
-//        }
-//    }
-//
-//    Row(modifier = Modifier.padding(16.dp)) {
-//        Text(text = "Select Region")
-//        Spacer(modifier = Modifier.height(8.dp))
-//        Column {
-//            RadioButton(
-//                selected = selectedRegion == Region.US,
-//                onClick = {
-//                    viewModelScope.launch {
-//                        app.dataStoreManager.saveSelectedRegion(Region.US)
-//                    }
-//                })
-//            Text(
-//                text = "US",
-//                modifier = Modifier.padding(start = 16.dp)
-//            )
-//        }
-//
-//        Column {
-//            RadioButton(
-//                selected = selectedRegion == Region.EU,
-//                onClick = {
-//                    viewModelScope.launch {
-//                        app.dataStoreManager.saveSelectedRegion(Region.EU)
-//                    }
-//                })
-//            Text(
-//                text = "EU",
-//                modifier = Modifier.padding(start = 16.dp)
-//            )
-//        }
-//
-//        Column {
-//            RadioButton(
-//                selected = selectedRegion == Region.TW,
-//                onClick = {
-//                    viewModelScope.launch {
-//                        app.dataStoreManager.saveSelectedRegion(Region.TW)
-//                    }
-//                })
-//            Text(
-//                text = "TW",
-//                modifier = Modifier.padding(start = 16.dp)
-//            )
-//        }
-//
-//    }
-//}
 
 @Composable
 fun checkAffix(name: String): Painter {
@@ -385,3 +387,9 @@ fun checkAffix(name: String): Painter {
     return affix
 }
 
+fun isNetworkAvailable(context: Context): Boolean {
+    val connectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val networkInfo = connectivityManager.activeNetworkInfo
+    return networkInfo != null && networkInfo.isConnected
+}
