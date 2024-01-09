@@ -44,7 +44,6 @@ class DetailedDungeonFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         val args: DetailedDungeonFragmentArgs by navArgs()
         val dungeonName = args.dungNameArg
 
@@ -59,13 +58,7 @@ class DetailedDungeonFragment : Fragment() {
             }
         }
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
 }
-
 
 private fun setDungeonDescription(name: String): Int {
     var description = R.string.description_azure_vault
@@ -81,7 +74,6 @@ private fun setDungeonDescription(name: String): Int {
     }
     return description
 }
-
 
 private fun setDungeonImage(name: String): Int {
     var image = R.drawable.the_azure_vault_small
@@ -160,7 +152,6 @@ fun showDetailedDungeon(name: String): List<DungeonBossImpl> {
     return dungeonBosses
 }
 
-
 @Composable
 fun DungeonBossDetailed(dungeonName: String, navController: NavController) {
 
@@ -174,7 +165,6 @@ fun DungeonBossDetailed(dungeonName: String, navController: NavController) {
                 isClickable = false
             )
         }
-
         itemsIndexed(bossList) { _, boss ->
             DungeonBossElement(
                 bossNameId = boss.nameResId,
@@ -182,7 +172,6 @@ fun DungeonBossDetailed(dungeonName: String, navController: NavController) {
                 bossDescriptionId = boss.descriptionResId,
                 bossTipsId = boss.bossTips
             )
-
         }
     }
 }

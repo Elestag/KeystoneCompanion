@@ -16,8 +16,6 @@ interface NetworkApi {
         @Query("locale") locale: String
     ): AffixesResponse
 
-    //TODO change season 2 for season 3 when it starts
-
-    @GET("v1/mythic-plus/season-cutoffs?season=season-df-2")
+    @GET("v1/mythic-plus/season-cutoffs?season=season-df-3")
     suspend fun getSeasonCutoffs(@Query("region") region: String): Response<CutoffsResponse>
 }

@@ -47,7 +47,6 @@ import androidx.navigation.fragment.findNavController
 import com.ostapenko.keystonecompanion.R
 import com.ostapenko.keystonecompanion.model.Region
 import com.ostapenko.keystonecompanion.model.dungeons.AffixesSet
-import com.ostapenko.keystonecompanion.network.model.Cutoffs
 import com.ostapenko.keystonecompanion.ui.KeystoneApplication
 import com.ostapenko.keystonecompanion.ui.theme.MyKeystoneTheme
 import com.ostapenko.keystonecompanion.ui.theme.shapes
@@ -68,11 +67,6 @@ class MainFragment : Fragment() {
     private val viewModel: NetworkViewModel by viewModels { viewModelFactory }
     private lateinit var navController: NavController
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -82,11 +76,7 @@ class MainFragment : Fragment() {
             setContent {
                 navController = findNavController()
                 Column(modifier = Modifier.fillMaxSize()) {
-                    LazyColumn(modifier = Modifier.weight(1f)) {
-                        item {
-                            CompanionApp(viewModel, navController = navController)
-                        }
-                    }
+                    CompanionApp(viewModel, navController = navController)
                 }
             }
         }
@@ -205,7 +195,8 @@ fun WeeklyModifiers(modifier: Modifier = Modifier, viewModel: NetworkViewModel) 
     val affixTwo = checkAffix(name = affixes[2])
 
     Column(
-        modifier = modifier,
+        modifier = modifier
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -213,7 +204,7 @@ fun WeeklyModifiers(modifier: Modifier = Modifier, viewModel: NetworkViewModel) 
             text = "Weekly M+ modifiers",
             style = typography.titleLarge
         )
-
+        Spacer(modifier = Modifier.height(16.dp))
         ModifierImages(
             tyraFortAffix = tyraForAffix,
             affixOne = affixOne,
