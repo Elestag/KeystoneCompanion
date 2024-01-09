@@ -218,7 +218,6 @@ fun DungeonBossElement(
                 )
             }
         }
-        //TODO this column has extra padding, idk why, fix later
         Column(modifier = modifier) {
             Text(
                 text = stringResource(id = bossTipsId),
