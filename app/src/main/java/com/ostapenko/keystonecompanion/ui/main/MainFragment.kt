@@ -3,6 +3,8 @@ package com.ostapenko.keystonecompanion.ui.main
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,10 +28,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -191,8 +197,18 @@ fun WeeklyModifiers(modifier: Modifier = Modifier, viewModel: NetworkViewModel) 
         } else {
             painterResource(id = AffixesSet.Fortified.imageResId)
         }
-    val affixOne = checkAffix(name = affixes[1])
-    val affixTwo = checkAffix(name = affixes[2])
+
+    val affixOne = if (affixes[1].isNotEmpty()) {
+        checkAffix(name = affixes[1])
+    } else {
+        painterResource(id = R.drawable.affix_volcanic)
+    }
+
+    val affixTwo = if (affixes[2].isNotEmpty()) {
+        checkAffix(name = affixes[2])
+    } else {
+        painterResource(id = R.drawable.affix_volcanic)
+    }
 
     Column(
         modifier = modifier
@@ -248,12 +264,30 @@ fun ModifierImages(tyraFortAffix: Painter, affixOne: Painter?, affixTwo: Painter
 
 @Composable
 fun CompanionApp(viewModel: NetworkViewModel, navController: NavController) {
-    val isNetworkAvailable = isNetworkAvailable(LocalContext.current)
-
+    //val isNetworkAvailable = isNetworkAvailable(LocalContext.current)
+    val connectivityManager =
+        LocalContext.current.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    var isNetworkAvailable by remember { mutableStateOf(isNetworkAvailable(connectivityManager)) }
     MyKeystoneTheme {
         Surface {
             Scaffold(topBar = { CompanionTopAppBar() }
             ) { contPadding ->
+
+                DisposableEffect(Unit) {
+                    val callback = object : ConnectivityManager.NetworkCallback() {
+                        override fun onAvailable(network: Network) {
+                            isNetworkAvailable = true
+                        }
+
+                        override fun onLost(network: Network) {
+                            isNetworkAvailable = false
+                        }
+                    }
+                    connectivityManager.registerDefaultNetworkCallback(callback)
+                    onDispose {
+                        connectivityManager.unregisterNetworkCallback(callback)
+                    }
+                }
                 if (isNetworkAvailable) {
                     CutoffsAndButtons(
                         modifier = Modifier.padding(contPadding),
@@ -378,9 +412,9 @@ fun checkAffix(name: String): Painter {
     return affix
 }
 
-fun isNetworkAvailable(context: Context): Boolean {
-    val connectivityManager =
-        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    val networkInfo = connectivityManager.activeNetworkInfo
-    return networkInfo != null && networkInfo.isConnected
+fun isNetworkAvailable(connectivityManager: ConnectivityManager): Boolean {
+
+    val network = connectivityManager.activeNetwork
+    val capabilities = connectivityManager.getNetworkCapabilities(network)
+    return capabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
 }
