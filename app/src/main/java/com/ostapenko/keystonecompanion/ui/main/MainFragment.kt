@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -67,7 +68,6 @@ class MainFragment : Fragment() {
     private val viewModelFactory: NetworkViewModelFactory by lazy {
         NetworkViewModelFactory(
             (requireActivity().application as KeystoneApplication).dataStoreManager,
-            (requireActivity().application as KeystoneApplication).connectivityManager
         )
     }
     private val viewModel: NetworkViewModel by viewModels { viewModelFactory }
@@ -89,6 +89,7 @@ class MainFragment : Fragment() {
     }
 }
 
+//todo понять почему на андроид 9 не работает экран
 @Composable
 fun CutoffsAndButtons(
     modifier: Modifier = Modifier,
@@ -96,14 +97,18 @@ fun CutoffsAndButtons(
     navHostController: NavController
 ) {
     val cutoffs by viewModel.rating.collectAsState()
+   /* Log.d(
+        "cutoffs",
+        "${cutoffs.size} = cutoffs.size, ${cutoffs[0]} = cutoffs[0], ${cutoffs[1]} = cutoffs[1]"
+    )*/
+
     if (cutoffs.isNotEmpty()) {
-        /*   Log.d(
+           Log.d(
            "cutoffs",
            "${cutoffs.size} = cutoffs.size, ${cutoffs[0]} = cutoffs[0], ${cutoffs[1]} = cutoffs[1]"
-       )*/
+       )
         Column(
             modifier = modifier
-                .fillMaxSize()
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -117,6 +122,7 @@ fun CutoffsAndButtons(
                 style = typography.titleLarge
             )
             Spacer(modifier = Modifier.height(10.dp))
+
             val ratingColor = if (cutoffs.size >= 2) {
                 Color(android.graphics.Color.parseColor(cutoffs[1]))
             } else {
@@ -264,7 +270,7 @@ fun ModifierImages(tyraFortAffix: Painter, affixOne: Painter?, affixTwo: Painter
 
 @Composable
 fun CompanionApp(viewModel: NetworkViewModel, navController: NavController) {
-    //val isNetworkAvailable = isNetworkAvailable(LocalContext.current)
+
     val connectivityManager =
         LocalContext.current.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     var isNetworkAvailable by remember { mutableStateOf(isNetworkAvailable(connectivityManager)) }
@@ -294,13 +300,13 @@ fun CompanionApp(viewModel: NetworkViewModel, navController: NavController) {
                         viewModel = viewModel,
                         navHostController = navController
                     )
+
                 } else {
                     CutoffsAndButtonsNoInternet(
                         modifier = Modifier.padding(contPadding),
                         navHostController = navController
                     )
                 }
-
             }
         }
 
