@@ -9,7 +9,6 @@ import com.ostapenko.keystonecompanion.repository.RetrofitFetcher
 import com.ostapenko.keystonecompanion.ui.main.datastore.DataStoreManager
 import com.ostapenko.keystonecompanion.viewmodel.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
