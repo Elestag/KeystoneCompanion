@@ -1,6 +1,7 @@
 package com.ostapenko.keystonecompanion.repository
 
 
+import android.util.Log
 import com.ostapenko.keystonecompanion.model.Region
 import com.ostapenko.keystonecompanion.network.api.NetworkApi
 import com.ostapenko.keystonecompanion.ui.main.datastore.DataStoreManager
@@ -19,8 +20,10 @@ class RetrofitFetcher(private val dataStoreManager: DataStoreManager) {
     private val baseRegion = Region.US
 
    suspend fun fetchDataFromRaiderIoApi(): Flow<List<String>> = flow {
+      // Log.d("cutoffs", "fetchDataFromRaiderIoApi called")
        val selectedRegion = dataStoreManager.getSelectedRegion().first() ?: baseRegion
-       // Log.d("REGION", "selected region = ${selectedRegion.name}")
+       // Log.d("cutoffs", "selected region = ${selectedRegion.name}")
+
         // Create a Retrofit instance with a Gson converter
         val retrofit = Retrofit.Builder()
             .baseUrl("https://raider.io/api/")
@@ -34,11 +37,13 @@ class RetrofitFetcher(private val dataStoreManager: DataStoreManager) {
         val weeklyAffixes = apiService.getWeeklyAffixes(region = selectedRegion.name, locale = "en").title
         val weeklyAffixesList = weeklyAffixes.split(", ").map { (it) }
         emit(weeklyAffixesList)
-        //Log.d(TAG, "$weeklyAffixes, and list $weeklyAffixesList")
+      //  Log.d("cutoffs", "weekly affixes = $weeklyAffixes, and weeklyAffixesList $weeklyAffixesList")
+     //  Log.d("cutoffs", "Thread for affixes = ${Thread.currentThread().name}")
     }.flowOn(Dispatchers.IO) // Run the Flow on an IO dispatcher to avoid blocking the main thread
 
   suspend  fun fetchCutoffsRaiderIoApi(selectedRegion: Region): Flow<List<String>> = flow {
         // Create a Retrofit instance with a Gson converter
+      //Log.d("cutoffs", "fetchCutoffsRaiderIoApi called")
         val retrofit = Retrofit.Builder()
             .baseUrl("https://raider.io/api/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -51,15 +56,15 @@ class RetrofitFetcher(private val dataStoreManager: DataStoreManager) {
 
         // Make the API call using the suspend function and emit the data as a Flow
         val response = apiService.getSeasonCutoffs(region = selectedRegion.name)
-        //Log.d(TAG, "$response")
+      //  Log.d("cutoffs", "$response")
         val cutoffs = response.body()
-       // Log.d(TAG, "cutoffsMin = $cutoffs")
+      //  Log.d("cutoffs", "cutoffs from response.body() = $cutoffs")
         val minRating = cutoffs?.pnine?.cutoffs?.all?.quantileMinValue
         val color = cutoffs?.pnine?.cutoffs?.allColor
-        //Log.d(TAG, "minRating = $minRating, color = $color")
+       // Log.d("cutoffs", "minRating = $minRating, color = $color")
+      //  Log.d("cutoffs", "Thread for rating = ${Thread.currentThread().name}")
 
         emit( listOf(minRating.toString(), color.toString()))
-        //Log.d(TAG, "$weeklyAffixes, and list $weeklyAffixesList")
     }.flowOn(Dispatchers.IO) // Run the Flow on an IO dispatcher to avoid blocking the main thread
 
 }

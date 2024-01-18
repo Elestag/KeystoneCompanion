@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.RadioButton
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
@@ -49,6 +48,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.ostapenko.keystonecompanion.R
@@ -73,6 +73,11 @@ class MainFragment : Fragment() {
     private val viewModel: NetworkViewModel by viewModels { viewModelFactory }
     private lateinit var navController: NavController
 
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModel
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -87,26 +92,27 @@ class MainFragment : Fragment() {
             }
         }
     }
+
+
 }
 
-//todo понять почему на андроид 9 не работает экран
 @Composable
 fun CutoffsAndButtons(
     modifier: Modifier = Modifier,
     viewModel: NetworkViewModel,
     navHostController: NavController
 ) {
-    val cutoffs by viewModel.rating.collectAsState()
+    val cutoffs by viewModel.rating.collectAsStateWithLifecycle()
    /* Log.d(
         "cutoffs",
         "${cutoffs.size} = cutoffs.size, ${cutoffs[0]} = cutoffs[0], ${cutoffs[1]} = cutoffs[1]"
     )*/
 
     if (cutoffs.isNotEmpty()) {
-           Log.d(
+         /*  Log.d(
            "cutoffs",
            "${cutoffs.size} = cutoffs.size, ${cutoffs[0]} = cutoffs[0], ${cutoffs[1]} = cutoffs[1]"
-       )
+       )*/
         Column(
             modifier = modifier
                 .padding(16.dp),
@@ -148,10 +154,10 @@ fun CutoffsAndButtons(
                     style = typography.titleMedium
                 )
             }
-
-            Spacer(modifier = modifier.height(20.dp))
             WeeklyModifiers(modifier, viewModel)
         }
+    }else{
+        CutoffsAndButtonsPlaceHolders()
     }
 }
 
@@ -195,8 +201,8 @@ fun CutoffsAndButtonsNoInternet(modifier: Modifier, navHostController: NavContro
 
 @Composable
 fun WeeklyModifiers(modifier: Modifier = Modifier, viewModel: NetworkViewModel) {
-    val affixes by viewModel.affixes.collectAsState()
-//    Log.d("affixes", "${affixes[0]}=it[0], ${affixes[1]}=it[1], ${affixes[2]}=it[2]")
+    val affixes by viewModel.affixes.collectAsStateWithLifecycle()
+      // Log.d("cutoffs", "${affixes[0]}=it[0], ${affixes[1]}=it[1], ${affixes[2]}=it[2]")
     val tyraForAffix =
         if (affixes.isNotEmpty() && affixes[0] == stringResource(id = AffixesSet.Tyrannical.nameResId)) {
             painterResource(id = AffixesSet.Tyrannical.imageResId)
